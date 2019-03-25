@@ -1,0 +1,28 @@
+// Overwrite Bootstrap's variables here
+
+$font-size-base: .75rem;
+$font-weight-bold: 500;
+
+$badge-padding-y: .5em;
+$badge-padding-x: .5em;
+
+$alert-padding-x: 1rem;
+$alert-padding-y: .5rem;
+
+$border-radius: 3px;
+
+$primary: #ce5766;
+$secondary: #7a5e5f;
+$warning: #cda97b;
+$danger: #b60d1a;
+
+$theme-colors: (
+    "purple": #463344,
+    "orange": #c37d63
+);
+
+$list-group-item-padding-y:    .5rem;
+$list-group-item-padding-x:    1rem;
+
+$input-btn-padding-y:         .2rem;
+$input-btn-padding-x:         .7rem;

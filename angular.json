@@ -27,9 +27,17 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/sass/now-ui-kit.scss",
+              "src/assets/css/demo.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/sweetalert2/dist/sweetalert2.min.js",
+              "node_modules/rellax/rellax.min.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {

@@ -1,0 +1,81 @@
+<nav class="navbar navbar-expand-lg bg-white fixed-top navbar-transparent" color-on-scroll="300">
+    <div class="container">
+      <div class="dropdown button-dropdown">
+          <a class="btn btn-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="button-bar"></span>
+              <span class="button-bar"></span>
+              <span class="button-bar"></span>
+          </a>
+           <div  class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+             <a class="dropdown-header">Dropdown header</a>
+             <a class="dropdown-item" href="#">Action</a>
+             <a class="dropdown-item" href="#">Another action</a>
+             <a class="dropdown-item" href="#">Something else here</a>
+             <div class="dropdown-divider"></div>
+             <a class="dropdown-item" href="#">Separated link</a>
+             <div class="dropdown-divider"></div>
+             <a class="dropdown-item" href="#">One more separated link</a>
+           </div>
+      </div>
+        <div class="navbar-translate">
+            <a class="navbar-brand" [routerLink]="['/home']" placement="bottom" title="Diseñado y soportado por ROISEL">
+                Deseos
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="sidebarToggle()">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" data-nav-image="assets/img/blurred-image-1.jpg" data-color="orange">
+            <ul class="navbar-nav ml-auto">
+              <!--
+              <li class="nav-item">
+                  <a class="nav-link" href="https://www.creative-tim.com/product/now-ui-kit-angular" target="_blank">
+                      <i class="now-ui-icons arrows-1_cloud-download-93"></i>
+                      <p>Download</p>
+                  </a>
+              </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://creativetimofficial.github.io/now-ui-kit-angular/documentation/tutorial" target="_blank">
+                      <i class="now-ui-icons files_paper"></i>
+                      <p>Documentation</p>
+                    </a>
+                </li>
+                -->
+                <li class="nav-item" id="item-register">
+                    <a class="nav-link btn btn-neutral" [routerLink]="['/register']">
+                        <i class="fas fa-fingerprint mr-2"></i>
+                        <p>Registrarme</p>
+                    </a>
+                </li>
+                <li class="nav-item" id="item-signin">
+                    <a class="nav-link btn btn-primary" [routerLink]="['/login']">
+                        <i class="fas fa-sign-in-alt mr-2"></i>
+                        <p>Ingresar</p>
+                    </a>
+                </li>
+                <!--
+                <li class="nav-item">
+                    <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank" data-original-title="Follow us on Twitter">
+                        <i class="fab fa-twitter"></i>
+                        <p class="d-lg-none d-xl-none">Twitter</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank" data-original-title="Like us on Facebook">
+                        <i class="fab fa-facebook-square"></i>
+                        <p class="d-lg-none d-xl-none">Facebook</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank" data-original-title="Follow us on Instagram">
+                        <i class="fab fa-instagram"></i>
+                        <p class="d-lg-none d-xl-none">Instagram</p>
+                    </a>
+                </li>
+                -->
+            </ul>
+        </div>
+    </div>
+</nav>
