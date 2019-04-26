@@ -1,35 +1,60 @@
-<nav class="navbar navbar-expand-lg bg-white fixed-top navbar-transparent" color-on-scroll="300">
-    <div class="container">
-      <div class="dropdown button-dropdown">
-          <a class="btn btn-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span class="button-bar"></span>
-              <span class="button-bar"></span>
-              <span class="button-bar"></span>
-          </a>
-           <div  class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-             <a class="dropdown-header">Dropdown header</a>
-             <a class="dropdown-item" href="#">Action</a>
-             <a class="dropdown-item" href="#">Another action</a>
-             <a class="dropdown-item" href="#">Something else here</a>
-             <div class="dropdown-divider"></div>
-             <a class="dropdown-item" href="#">Separated link</a>
-             <div class="dropdown-divider"></div>
-             <a class="dropdown-item" href="#">One more separated link</a>
-           </div>
-      </div>
-        <div class="navbar-translate">
-            <a class="navbar-brand" [routerLink]="['/home']" placement="bottom" title="Diseñado y soportado por ROISEL">
-                Deseos
+<nav class="navbar navbar-expand-md bg-white fixed-top navbar-transparent" color-on-scroll="300">
+    <button class="navbar-toggler text-primary" type="button" data-toggle="collapse" data-target="#navbarMain"
+      aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+    <a class="navbar-brand" [routerLink]="['/home']" placement="bottom" title="Diseñado y soportado por ROISEL">
+    Deseos
+    </a>
+
+    <div class="collapse navbar-collapse px-2" id="navbarMain">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" id="item-como">
+            <a class="nav-link" [routerLink]="['/']">
+                <p>¿Cómo funciona?</p>
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="sidebarToggle()">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-            </button>
-        </div>
-        <div class="collapse navbar-collapse" data-nav-image="assets/img/blurred-image-1.jpg" data-color="orange">
-            <ul class="navbar-nav ml-auto">
-              <!--
+            </li>
+            <li class="nav-item" id="item-invitado">
+            <a class="nav-link" [routerLink]="['/']">
+                <p>Soy invitado</p>
+            </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto d-md-none">
+          <li class="nav-item" id="item-register">
+            <a class="nav-link btn btn-neutral btn-sm mr-2" [routerLink]="['/register']" routerLinkActive="d-none">
+              <i class="fas fa-fingerprint mr-2"></i>
+              <p>Registrarme</p>
+            </a>
+          </li>
+          <li class="nav-item" id="item-login">
+            <a class="nav-link btn btn-primary btn-sm" [routerLink]="['/login']" routerLinkActive="d-none">
+              <i class="fas fa-sign-in-alt mr-2"></i>
+              <p>Ingresar</p>
+            </a>
+          </li>
+        </ul>
+    </div>
+
+    <form class="form-inline my-2 my-lg-0 d-none d-md-flex">
+         <a class="nav-link btn btn-neutral btn-sm mr-2" [routerLink]="['/register']" routerLinkActive="d-none">
+           <i class="fas fa-fingerprint mr-2"></i>
+           <p>Registrarme</p>
+         </a>
+         <a class="nav-link btn btn-primary btn-sm" [routerLink]="['/login']" routerLinkActive="d-none">
+           <i class="fas fa-sign-in-alt mr-2"></i>
+           <p>Ingresar</p>
+         </a>
+    </form>
+
+<!--
+    <a class="nav-link btn btn-primary d-md-none ml-auto btn-sm" [routerLink]="['/login']">
+      <i class="fas fa-sign-in-alt mr-2"></i>
+      <p>Ingresar</p>
+    </a>
+
+            <ul class="navbar-nav ml-auto d-none d-md-flex">
+              
               <li class="nav-item">
                   <a class="nav-link" href="https://www.creative-tim.com/product/now-ui-kit-angular" target="_blank">
                       <i class="now-ui-icons arrows-1_cloud-download-93"></i>
@@ -42,7 +67,7 @@
                       <p>Documentation</p>
                     </a>
                 </li>
-                -->
+                
                 <li class="nav-item" id="item-register">
                     <a class="nav-link btn btn-neutral" [routerLink]="['/register']">
                         <i class="fas fa-fingerprint mr-2"></i>
@@ -55,7 +80,7 @@
                         <p>Ingresar</p>
                     </a>
                 </li>
-                <!--
+                
                 <li class="nav-item">
                     <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank" data-original-title="Follow us on Twitter">
                         <i class="fab fa-twitter"></i>
@@ -74,8 +99,6 @@
                         <p class="d-lg-none d-xl-none">Instagram</p>
                     </a>
                 </li>
-                -->
             </ul>
-        </div>
-    </div>
+        -->
 </nav>

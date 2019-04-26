@@ -1,0 +1,8 @@
+.navbar-collapse.px-2.collapse,
+.navbar-collapse.px-2.collapsing {
+    @media screen and (max-width: 768px){
+        background-color: rgba(0,0,0,1);
+        border-radius: 5px;
+    }
+
+}

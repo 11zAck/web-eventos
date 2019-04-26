@@ -15,9 +15,6 @@ export class LoginComponent implements OnInit {
 
       var footer = document.getElementsByTagName('footer')[0];
       footer.classList.add('bg-transparent','text-white');
-
-      var btnLogin = document.getElementById('item-signin');
-      btnLogin.classList.add('d-none');
   }
   ngOnDestroy(){
       var body = document.getElementsByTagName('body')[0];
@@ -25,8 +22,5 @@ export class LoginComponent implements OnInit {
 
       var footer = document.getElementsByTagName('footer')[0];
       footer.classList.remove('bg-transparent','text-white');
-
-      var btnLogin = document.getElementById('item-signin');
-      btnLogin.classList.remove('d-none');
   }
 }

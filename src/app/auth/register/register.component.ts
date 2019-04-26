@@ -19,16 +19,12 @@ export class RegisterComponent implements OnInit {
     body.classList.add('signup-page');
     var footer = document.getElementsByTagName('footer')[0];
     footer.classList.add('bg-transparent','text-white');
-    var btnRegister = document.getElementById('item-register');
-    btnRegister.classList.add('d-none');
   }
   ngOnDestroy(){
     var body = document.getElementsByTagName('body')[0];
     body.classList.remove('signup-page');
     var footer = document.getElementsByTagName('footer')[0];
     footer.classList.remove('bg-transparent','text-white');
-    var btnRegister = document.getElementById('item-register');
-    btnRegister.classList.remove('d-none');
   }
 
   input_focusin(nombre: any){
