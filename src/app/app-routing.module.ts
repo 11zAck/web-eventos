@@ -4,13 +4,17 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './default/page-not-found.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { NuevoEventoComponent } from './eventos/nuevo-evento.component';
+import { EditarEventoComponent } from './eventos/editar-evento.component';
 
 const routes: Routes = [
-  {path: '',  redirectTo:'home', pathMatch: 'full'},
-  {path:'home', component: HomeComponent},
-  {path:'login', component: LoginComponent},
-  {path:'register', component: RegisterComponent},
-  {path:'**', component: PageNotFoundComponent}
+  {path: '',  redirectTo: 'home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'new-event', component: NuevoEventoComponent},
+  {path: 'edit-event', component: EditarEventoComponent},
+  {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({

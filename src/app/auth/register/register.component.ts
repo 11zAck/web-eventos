@@ -1,34 +1,49 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, OnDestroy } from '@angular/core';
+import { Usuario } from '../usuario';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
 
-  f_nombre;
-  f_apellido;
-  f_email;
+  fNombre;
+  fApellido;
+  fEmail;
   focus1;
+  terms;
+  formActivated;
 
-  constructor(private element : ElementRef) { }
+  public usuario: Usuario = new Usuario();
+
+  constructor(private element: ElementRef) {
+    this.formActivated = true;
+  }
 
   ngOnInit() {
-    var body = document.getElementsByTagName('body')[0];
+    const body = document.getElementsByTagName('body')[0];
     body.classList.add('signup-page');
-    var footer = document.getElementsByTagName('footer')[0];
-    footer.classList.add('bg-transparent','text-white');
-  }
-  ngOnDestroy(){
-    var body = document.getElementsByTagName('body')[0];
-    body.classList.remove('signup-page');
-    var footer = document.getElementsByTagName('footer')[0];
-    footer.classList.remove('bg-transparent','text-white');
+    const footer = document.getElementsByTagName('footer')[0];
+    footer.classList.add('bg-transparent', 'text-white');
   }
 
-  input_focusin(nombre: any){
+  ngOnDestroy() {
+    const body = document.getElementsByTagName('body')[0];
+    body.classList.remove('signup-page');
+    const footer = document.getElementsByTagName('footer')[0];
+    footer.classList.remove('bg-transparent', 'text-white');
+  }
+
+  input_focusin(nombre: any) {
     nombre.classList.add('input-group-focus');
+  }
+
+  public create(): void {
+    console.log('CLICK');
+    console.log( this.usuario );
+    console.log( this.terms );
+    this.formActivated = false;
   }
 
 }

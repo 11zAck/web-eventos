@@ -1,26 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import swal from 'sweetalert2';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Usuario } from '../usuario';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  formulario;
+  private usuario: Usuario = new Usuario();
+
+  constructor( private fbuild: FormBuilder ) {
+    this.formulario = fbuild.group({
+      usuario: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
 
   ngOnInit() {
-      var body = document.getElementsByTagName('body')[0];
+      const body = document.getElementsByTagName('body')[0];
       body.classList.add('login-page');
 
-      var footer = document.getElementsByTagName('footer')[0];
-      footer.classList.add('bg-transparent','text-white');
+      const footer = document.getElementsByTagName('footer')[0];
+      footer.classList.add('bg-transparent', 'text-white');
   }
-  ngOnDestroy(){
-      var body = document.getElementsByTagName('body')[0];
+
+  ngOnDestroy() {
+      const body = document.getElementsByTagName('body')[0];
       body.classList.remove('login-page');
 
-      var footer = document.getElementsByTagName('footer')[0];
-      footer.classList.remove('bg-transparent','text-white');
+      const footer = document.getElementsByTagName('footer')[0];
+      footer.classList.remove('bg-transparent', 'text-white');
   }
+
+  public loginUsuario(): void {
+    if ( !this.formulario.valid ) {
+      swal.fire( 'Login', 'Usuario o contraseña inválidos.', 'warning' );
+    } else {
+      this.usuario.username = this.formulario.value.usuario;
+      this.usuario.password = this.formulario.value.password;
+      console.log( 'SUBMIT: ', this.usuario );
+    }
+  }
+
 }
