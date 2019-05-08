@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-nuevo-evento',
   templateUrl: './nuevo-evento.component.html',
-  styleUrls: ['./nuevo-evento.component.sass']
+  styleUrls: ['./nuevo-evento.component.scss']
 })
 export class NuevoEventoComponent implements OnInit {
 
-  constructor() { }
+  // @ViewChild('selecttdc') selectTdc: ElementRef;
+  // this.selectTdc.nativeElement.selectpicker('refresh');
 
+  constructor() {
+  }
+  
   ngOnInit() {
   }
 

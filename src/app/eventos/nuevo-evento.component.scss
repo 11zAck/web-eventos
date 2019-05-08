@@ -1,0 +1,26 @@
+.page-header.page-header-xsmall {
+    min-height: 30vh;
+    max-height: 240px;
+}
+.form-text {
+  display: block;
+  margin-top: 0.25rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+small {
+  font-size: 70%;
+}
+.page-header .content-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  padding: 0 15px;
+  width: 100%;
+  max-width: 880px;
+}
