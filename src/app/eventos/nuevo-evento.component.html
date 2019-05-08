@@ -1,29 +1,27 @@
 <div class="wrapper">
-  <div class="page-header page-header-xsmall">
-    <div class="page-header-image rellax-header" data-rellax-speed="-8"
-      style="background-image: url('assets/img/pp-cov.jpg'); transform: translate3d(0px, 0px, 0px);"></div>
-    <div class="content-center">
-      <div class="row">
-        <div class="col-md-8 ml-auto mr-auto">
-          <h1 class="title">Nuevo evento</h1>
-          <h4>¡Tu próxima celebración será espectacular!</h4>
+    <div class="page-header page-header-xsmall">
+        <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url('assets/img/pp-cov.jpg'); transform: translate3d(0px, 0px, 0px);"></div>
+        <div class="content-center">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
+                    <h1 class="title">Nuevo evento</h1>
+                    <h4>¡Tu próxima celebración será espectacular!</h4>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <div class="section">
-    <div class="container">
-      <div class="row">
-        <div class="col d-flex justify-content-center">
-
-          <ul class="nav nav-pills nav-pills-primary nav-pills-icons" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#aform" role="tablist">
-                <i class="fas fa-cocktail"></i>
-                Aniversario
-              </a>
-            </li>
-            <!--
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                    <ul class="nav nav-pills nav-pills-primary nav-pills-icons" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#aform" role="tablist">
+                                <i class="fas fa-cocktail"></i>
+                                Aniversario
+                            </a>
+                        </li>
+                        <!--
             <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#cform" role="tablist">
                 <i class="fas fa-gift"></i>
@@ -37,184 +35,180 @@
               </a>
             </li>
           -->
-          </ul>
-        </div>
-      </div>
-      <div class="row mt-4">
-        <div class="col">
-          <div class="tab-content tab-space">
-
-            <!-- ANIVERSARIO -->
-            <div class="tab-pane active" id="aform">
-
-              <div class="row">
-                <div class="col-6 mx-auto form-group">
-                  <label for="nombre">Título del aniversario</label>
-                  <input type="text" class="form-control" name="nombre" id="nombre" aria-describedby="helpId"
-                    placeholder="Título">
-                  <small id="helpId" class="form-text text-muted">Con este título tus invitados conocerán tu
-                    aniversario.</small>
+                    </ul>
                 </div>
-              </div>
-
-              <div class="row">
-                <div class="col-6 mx-auto form-group">
-                  <label for="fecha">Fecha y hora del aniversario</label>
-                  <input type="text" class="form-control" name="fecha" id="fecha" aria-describedby="helpId"
-                    placeholder="01/02/2019 20:00:00">
-                  <small id="helpId" class="form-text text-muted">Esta fecha y hora indica el día de celebración de tu
-                    aniversario.</small>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-6 mx-auto form-group">
-                  <label for="lugar">Lugar del aniversario</label>
-                  <input type="text" class="form-control" name="lugar" id="lugar" aria-describedby="helpId"
-                    placeholder="01/02/2019">
-                  <small id="helpId" class="form-text text-muted">Dirección en que se celebrará tu aniversario.</small>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-6 mx-auto form-group">
-                  <label for="banco">Entidad Financiera</label>
-                  <input type="text" class="form-control" name="banco" id="banco" aria-describedby="helpId"
-                    placeholder="Nombre Banco">
-                  <small id="helpId" class="form-text text-muted">Entidad Financiera donde se realizarán los abonos de
-                    tus invitados.</small>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-6 mx-auto form-group">
-                  <label for="tipo_cuenta" class="d-block">Tipo de cuenta</label>
-                  <div class="dropdown bootstrap-select">
-                    <select #selecttdc class="selectpicker" data-width="250px" data-live-search="false" 
-        title="Tipo de Cuenta" data-size="10" data-style="btn btn-outline-primary btn-round btn-block">
-                      <option value="CC">Cuenta Corriente</option>
-                      <option value="CV">Cuenta Vista</option>
-                      <option value="CR">Cuenta RUT</option>
-                    </select>
-                  </div>
-
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-6 mx-auto form-group">
-                  <label for="num_cuenta">Número de Cuenta</label>
-                  <input type="text" class="form-control" name="num_cuenta" id="num_cuenta" aria-describedby="helpId"
-                    placeholder="00012223904">
-                  <small id="helpId" class="form-text text-muted">Número de cuenta corriente donde se realizarán los
-                    abonos.</small>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-6 mx-auto form-group">
-                  <label for="email_banco">Correo Electrónico</label>
-                  <input type="text" class="form-control" name="email_banco" id="email_banco" aria-describedby="helpId"
-                    placeholder="comprobante@ejemplo.cl">
-                  <small id="helpId" class="form-text text-muted">En esta dirección se notificarán los abonos
-                    realizados.</small>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-6 mx-auto form-group">
-                  <label for="telefono">Teléfono</label>
-                  <input type="text" class="form-control" name="telefono" id="telefono" aria-describedby="helpId"
-                    placeholder="+56 9 22 345 643">
-                  <small id="helpId" class="form-text text-muted">Sólo usaremos tu número para informaciones
-                    importantes.</small>
-                </div>
-              </div>
-
-              <div class="space-70"></div>
-
-              <button class="btn btn-primary btn-round" type="button">
-                <i class="now-ui-icons ui-1_simple-add mr-2"></i> Agregar deseo
-              </button>
-
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Cantidad</th>
-                    <th>Deseo</th>
-                    <th>Valor</th>
-                    <th>Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td scope="row">
-                      <button type="button" class="btn btn-secondary btn-icon btn-round"> <i
-                          class="now-ui-icons ui-1_simple-delete"></i> </button>
-                      <span class="mx-3">0</span>
-                      <button type="button" class="btn btn-primary btn-icon btn-round"> <i
-                          class="now-ui-icons ui-1_simple-add"></i> </button>
-                    </td>
-                    <td>Amor</td>
-                    <td>
-                      <div class="form-group">
-                        <input type="text" class="form-control" name="valor" id="valor" aria-describedby="helpId"
-                          placeholder="$ 0">
-                      </div>
-                    </td>
-                    <td>
-                      <div class="form-group">
-                        <input type="text" class="form-control" name="total" id="total" aria-describedby="helpId"
-                          placeholder="$ 0">
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td scope="row">
-                      <button type="button" class="btn btn-secondary btn-icon btn-round"> <i
-                          class="now-ui-icons ui-1_simple-delete"></i> </button>
-                      <span class="mx-3">0</span>
-                      <button type="button" class="btn btn-primary btn-icon btn-round"> <i
-                          class="now-ui-icons ui-1_simple-add"></i> </button>
-                    </td>
-                    <td>Paz</td>
-                    <td>
-                      <div class="form-group">
-                        <input type="text" class="form-control" name="valor" id="valor" aria-describedby="helpId"
-                          placeholder="$ 0">
-                      </div>
-                    </td>
-                    <td>
-                      <div class="form-group">
-                        <input type="text" class="form-control" name="total" id="total" aria-describedby="helpId"
-                          placeholder="$ 0">
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-
             </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="tab-content tab-space">
+                        <!-- ANIVERSARIO -->
+                        <div class="tab-pane active" id="aform">
+                            <div class="row">
+                                <div class="col-6 mx-auto form-group">
+                                    <label for="nombre">Título del aniversario</label>
+                                    <input type="text" class="form-control" name="nombre" id="nombre" aria-describedby="helpId" placeholder="Título" [(ngModel)]="evento.nombre" />
+                                    <small id="helpId" class="form-text text-muted">Con este título tus invitados conocerán tu aniversario.</small>
+                                </div>
+                            </div>
 
-            <!-- CUMPLEAÑOS 
+                            <div class="row">
+                                <div class="col-6 mx-auto form-group">
+                                    <label for="fecha">Fecha y hora del aniversario</label>
+                                    <input type="text" class="form-control" name="fecha" id="fecha" aria-describedby="helpId" placeholder="01/02/2019 20:00:00" [(ngModel)]="evento.fechaEvento" />
+                                    <small id="helpId" class="form-text text-muted">Esta fecha y hora indica el día de celebración de tu aniversario.</small>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6 mx-auto form-group">
+                                    <label for="lugar">Lugar del aniversario</label>
+                                    <input type="text" class="form-control" name="lugar" id="lugar" aria-describedby="helpId" placeholder="01/02/2019" [(ngModel)]="evento.direccion" />
+                                    <small id="helpId" class="form-text text-muted">Dirección en que se celebrará tu aniversario.</small>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6 mx-auto form-group">
+                                    <label for="banco" class="d-block">Entidad Financiera</label>
+                                    <div class="dropdown bootstrap-select">
+                                        <select
+                                            class="selectpicker"
+                                            title="Entidad Financiera"
+                                            id="banco"
+                                            data-width="100%"
+                                            data-live-search="false"
+                                            data-size="10"
+                                            data-style="btn btn-outline-primary btn-round btn-block"
+                                            [(ngModel)]="evento.banco"
+                                            #selectef
+                                            style="width: 100%;"
+                                        >
+                                            <option *ngFor="let b of bancos" [value]="b.id">{{b.nombre}}</option>
+                                        </select>
+                                    </div>
+                                    <small id="helpId" class="form-text text-muted">Entidad Financiera donde se realizarán los abonos de tus invitados.</small>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6 mx-auto form-group">
+                                    <label for="tipo_cuenta" class="d-block">Tipo de cuenta</label>
+                                    <div class="dropdown bootstrap-select">
+                                        <select
+                                            class="selectpicker"
+                                            title="Tipo de Cuenta"
+                                            id="tipo_cuenta"
+                                            data-width="100%"
+                                            data-live-search="false"
+                                            data-size="10"
+                                            data-style="btn btn-outline-primary btn-round btn-block"
+                                            #selecttdc
+                                            style="width: 100%;"
+                                        >
+                                            <option value="CC">Cuenta Corriente</option>
+                                            <option value="CV">Cuenta Vista</option>
+                                            <option value="CR">Cuenta RUT</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6 mx-auto form-group">
+                                    <label for="num_cuenta">Número de Cuenta</label>
+                                    <input type="text" class="form-control" name="num_cuenta" id="num_cuenta" aria-describedby="helpId" placeholder="00012223904" [(ngModel)]="evento.numeroCuenta" />
+                                    <small id="helpId" class="form-text text-muted">Número de cuenta corriente donde se realizarán los abonos.</small>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6 mx-auto form-group">
+                                    <label for="email_banco">Correo Electrónico</label>
+                                    <input type="text" class="form-control" name="email_banco" id="email_banco" aria-describedby="helpId" placeholder="comprobante@ejemplo.cl" [(ngModel)]="evento.emailCuenta" />
+                                    <small id="helpId" class="form-text text-muted">En esta dirección se notificarán los abonos realizados.</small>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6 mx-auto form-group">
+                                    <label for="telefono">Teléfono</label>
+                                    <input type="text" class="form-control" name="telefono" id="telefono" aria-describedby="helpId" placeholder="+56 9 22 345 643" [(ngModel)]="evento.telefono" />
+                                    <small id="helpId" class="form-text text-muted">Sólo usaremos tu número para informaciones importantes.</small>
+                                </div>
+                            </div>
+
+                            <div class="space-70"></div>
+
+                            <button class="btn btn-primary btn-round" type="button"><i class="now-ui-icons ui-1_simple-add mr-2"></i> Agregar deseo</button>
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Cantidad</th>
+                                        <th>Deseo</th>
+                                        <th>Valor</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td scope="row">
+                                            <button type="button" class="btn btn-secondary btn-icon btn-round"><i class="now-ui-icons ui-1_simple-delete"></i></button>
+                                            <span class="mx-3">0</span>
+                                            <button type="button" class="btn btn-primary btn-icon btn-round"><i class="now-ui-icons ui-1_simple-add"></i></button>
+                                        </td>
+                                        <td>Amor</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="valor" id="valor" aria-describedby="helpId" placeholder="$ 0" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="total" id="total" aria-describedby="helpId" placeholder="$ 0" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">
+                                            <button type="button" class="btn btn-secondary btn-icon btn-round"><i class="now-ui-icons ui-1_simple-delete"></i></button>
+                                            <span class="mx-3">0</span>
+                                            <button type="button" class="btn btn-primary btn-icon btn-round"><i class="now-ui-icons ui-1_simple-add"></i></button>
+                                        </td>
+                                        <td>Paz</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="valor" id="valor" aria-describedby="helpId" placeholder="$ 0" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="total" id="total" aria-describedby="helpId" placeholder="$ 0" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- CUMPLEAÑOS 
                 <div class="tab-pane" id="cform">
     
                 </div>
                 -->
 
-            <!-- MATRIMONIO
+                        <!-- MATRIMONIO
                 <div class="tab-pane" id="mform">
                 
                 </div>
                 -->
-          </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="row justify-content-end">
+                <button class="btn btn-primary btn-round" (click)="nextPage()" >Siguiente</button>
+            </div>
         </div>
-      </div>
-
-      <div class="row justify-content-end">
-        <button class="btn btn-primary btn-round">Siguiente</button>
-      </div>
     </div>
-  </div>
 </div>

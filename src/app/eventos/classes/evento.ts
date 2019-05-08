@@ -1,3 +1,4 @@
+import { Banco } from './banco';
 import { Usuario } from '../../auth/usuario';
 import { Invitado } from './invitado';
 import { Deseo } from './deseo';
@@ -7,12 +8,15 @@ export class Evento {
     id?: number;
     nombre?: string;
     descripcion?: string;
+    direccion?: string;
     activo?: boolean;
     reportado?: boolean;
+    banco?: Banco;
     tipoCuenta?: string;
     numeroCuenta?: string;
     rutCuenta?: string;
     emailCuenta?: string;
+    telefono?: string;
     fechaEvento?: Date;
     horaEvento?: Date;
     creacion?: Date;

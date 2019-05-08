@@ -4,6 +4,12 @@ export class Banco {
     private _nombre: string;
     private _activo: boolean;
 
+    public constructor( public new_id: number, public new_nombre: string, public new_activo: boolean ){
+        this._id = new_id;
+        this._nombre = new_nombre;
+        this._activo = new_activo;
+    }
+
     get id(): number {
         return this._id;
     }
