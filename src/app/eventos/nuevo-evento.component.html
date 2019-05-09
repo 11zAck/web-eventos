@@ -79,11 +79,11 @@
                                             data-live-search="false"
                                             data-size="10"
                                             data-style="btn btn-outline-primary btn-round btn-block"
-                                            [(ngModel)]="evento.banco"
+                                            [ngModel]="bancoSeleccionado"
+                                            (ngModelChange)="onChangeBanco($event)"
                                             #selectef
-                                            style="width: 100%;"
                                         >
-                                            <option *ngFor="let b of bancos" [value]="b.id">{{b.nombre}}</option>
+                                            <option *ngFor="let b of bancos" [ngValue]="b">{{b.nombre}}</option>
                                         </select>
                                     </div>
                                     <small id="helpId" class="form-text text-muted">Entidad Financiera donde se realizarán los abonos de tus invitados.</small>
@@ -103,13 +103,14 @@
                                             data-size="10"
                                             data-style="btn btn-outline-primary btn-round btn-block"
                                             #selecttdc
-                                            style="width: 100%;"
+                                            [(ngModel)]="evento.tipoCuenta"
                                         >
                                             <option value="CC">Cuenta Corriente</option>
                                             <option value="CV">Cuenta Vista</option>
                                             <option value="CR">Cuenta RUT</option>
                                         </select>
                                     </div>
+                                    <small id="helpId" class="form-text text-muted">Tipo de cuenta de tu entidad financiera.</small>
                                 </div>
                             </div>
 
@@ -148,43 +149,40 @@
                                         <th>Deseo</th>
                                         <th>Valor</th>
                                         <th>Total</th>
+                                        <th>Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr *ngFor="let d of deseos">
                                         <td scope="row">
-                                            <button type="button" class="btn btn-secondary btn-icon btn-round"><i class="now-ui-icons ui-1_simple-delete"></i></button>
-                                            <span class="mx-3">0</span>
-                                            <button type="button" class="btn btn-primary btn-icon btn-round"><i class="now-ui-icons ui-1_simple-add"></i></button>
+                                            <div class="form-inline">
+
+                                                <button type="button" class="btn btn-secondary btn-icon btn-round"><i class="now-ui-icons ui-1_simple-delete"></i></button>
+                                                <div class="form-group mb-0 mx-2">
+                                                    <input type="text" class="form-control text-center" name="cant" id="cant" placeholder="0" style="width: 80px" 
+                                                        [value]="d.cantidad" >
+                                                </div>
+                                                <button type="button" class="btn btn-primary btn-icon btn-round"><i class="now-ui-icons ui-1_simple-add"></i></button>
+                                                
+                                            </div>
                                         </td>
-                                        <td>Amor</td>
+                                        <td>{{d.nombre}}</td>
                                         <td>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" name="valor" id="valor" aria-describedby="helpId" placeholder="$ 0" />
+                                            <div class="form-group mb-0">
+                                                <input type="text" class="form-control text-right" name="valor" id="valor" aria-describedby="helpId" placeholder="$ 0" 
+                                                    value="{{d.valor | currency:'CLP':'symbol-narrow':'':'es-CL' }}" />
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" name="total" id="total" aria-describedby="helpId" placeholder="$ 0" />
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">
-                                            <button type="button" class="btn btn-secondary btn-icon btn-round"><i class="now-ui-icons ui-1_simple-delete"></i></button>
-                                            <span class="mx-3">0</span>
-                                            <button type="button" class="btn btn-primary btn-icon btn-round"><i class="now-ui-icons ui-1_simple-add"></i></button>
-                                        </td>
-                                        <td>Paz</td>
-                                        <td>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" name="valor" id="valor" aria-describedby="helpId" placeholder="$ 0" />
+                                            <div class="form-group mb-0">
+                                                <input type="text" class="form-control text-right" name="total" id="total" aria-describedby="helpId" placeholder="$ 0" 
+                                                    value="{{d.valor * d.cantidad | currency:'CLP':'symbol-narrow':'':'es-CL'}}" />
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" name="total" id="total" aria-describedby="helpId" placeholder="$ 0" />
-                                            </div>
+                                            <button class="btn btn-danger btn-icon btn-round">
+                                                <i class="fas fa-times"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -209,6 +207,10 @@
             <div class="row justify-content-end">
                 <button class="btn btn-primary btn-round" (click)="nextPage()" >Siguiente</button>
             </div>
+
+            <div class="space-70"></div>
+
+            
         </div>
     </div>
 </div>

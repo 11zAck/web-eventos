@@ -14,6 +14,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NuevoEventoComponent } from './eventos/nuevo-evento.component';
 import { EditarEventoComponent } from './eventos/editar-evento.component';
 import { HomeLoginComponent } from './home/home-login.component';
+import { CurrencyPipe } from '@angular/common';
+import { registerLocaleData } from '@angular/common';
+import localeCL from '@angular/common/locales/es-CL';
+
+registerLocaleData(localeCL);
 
 @NgModule({
   declarations: [
@@ -36,7 +41,10 @@ import { HomeLoginComponent } from './home/home-login.component';
     FormsModule,
     RouterModule
   ],
-  providers: [],
+  providers: [
+    CurrencyPipe
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+}
