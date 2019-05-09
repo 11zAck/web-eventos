@@ -1,7 +1,7 @@
+import { DeseoAsociado } from './deseo-asociado';
 import { Banco } from './banco';
 import { Usuario } from '../../auth/usuario';
 import { Invitado } from './invitado';
-import { Deseo } from './deseo';
 
 export class Evento {
 
@@ -27,6 +27,6 @@ export class Evento {
 
     invitados?: Array<Invitado>;
 
-    deseos?: Array<Deseo>;
+    deseos?: Array<DeseoAsociado>;
 
 }

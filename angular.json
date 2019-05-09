@@ -28,6 +28,7 @@
             ],
             "styles": [
               "src/assets/css/bootstrap.min.css",
+              "node_modules/angular2-multiselect-dropdown/themes/default.theme.css",
               "src/assets/css/now-ui-kit.min.css",
               "src/assets/css/demo.css"
             ],
@@ -36,8 +37,7 @@
               "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/sweetalert2/dist/sweetalert2.min.js",
-              "node_modules/rellax/rellax.min.js",
-              "node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"
+              "node_modules/rellax/rellax.min.js"
             ],
             "es5BrowserSupport": true
           },

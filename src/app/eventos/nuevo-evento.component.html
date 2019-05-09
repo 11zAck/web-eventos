@@ -70,22 +70,7 @@
                             <div class="row">
                                 <div class="col-6 mx-auto form-group">
                                     <label for="banco" class="d-block">Entidad Financiera</label>
-                                    <div class="dropdown bootstrap-select">
-                                        <select
-                                            class="selectpicker"
-                                            title="Entidad Financiera"
-                                            id="banco"
-                                            data-width="100%"
-                                            data-live-search="false"
-                                            data-size="10"
-                                            data-style="btn btn-outline-primary btn-round btn-block"
-                                            [ngModel]="bancoSeleccionado"
-                                            (ngModelChange)="onChangeBanco($event)"
-                                            #selectef
-                                        >
-                                            <option *ngFor="let b of bancos" [ngValue]="b">{{b.nombre}}</option>
-                                        </select>
-                                    </div>
+                                    <angular2-multiselect [data]="listBancos" [(ngModel)]="listBancosSelected"  [settings]="listBancosSettings" ></angular2-multiselect>
                                     <small id="helpId" class="form-text text-muted">Entidad Financiera donde se realizarán los abonos de tus invitados.</small>
                                 </div>
                             </div>
@@ -140,9 +125,12 @@
 
                             <div class="space-70"></div>
 
-                            <button class="btn btn-primary btn-round" type="button"><i class="now-ui-icons ui-1_simple-add mr-2"></i> Agregar deseo</button>
+                            <div class="form-inline">
+                                <angular2-multiselect [data]="listDeseos" [(ngModel)]="listDeseosSelected"  [settings]="listDeseosSettings" style="width:200px;" ></angular2-multiselect>
+                                <button class="btn btn-primary btn-round" type="button" (click)="onClickAddDeseo()"><i class="now-ui-icons ui-1_simple-add mr-2"></i> Agregar deseo</button>
+                            </div>
 
-                            <table class="table">
+                            <table class="table" *ngIf="nuevosDeseos?.length > 0">
                                 <thead>
                                     <tr>
                                         <th>Cantidad</th>
@@ -153,7 +141,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let d of deseos">
+                                    <tr *ngFor="let d of nuevosDeseos">
                                         <td scope="row">
                                             <div class="form-inline">
 
