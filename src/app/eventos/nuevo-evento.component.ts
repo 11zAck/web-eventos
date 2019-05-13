@@ -1,9 +1,10 @@
 import { Banco } from './classes/banco';
 import { Evento } from './classes/evento';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DeseoAsociado } from './classes/deseo-asociado';
 import { CurrencyPipe } from '@angular/common';
 import { Deseo } from './classes/deseo';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 declare var $: any;
 
@@ -33,7 +34,7 @@ export class NuevoEventoComponent implements OnInit {
   listTipoCuentaSettings = {};
 
   // ################################# //
-  
+
   public evento: Evento = new Evento();
 
   public bancoSeleccionado: Banco = new Banco();
@@ -68,52 +69,67 @@ export class NuevoEventoComponent implements OnInit {
   ngOnInit() {
 
     this.listBancos = [
-      { "id": 1,"itemName":'BANCO DE CHILE' },
-      { "id": 2,"itemName":'BANCO INTERNACIONAL' },
-      { "id": 3,"itemName":'SCOTIABANK CHILE' },
-      { "id": 4,"itemName":'BANCO DE CREDITO E INVERSIONES' },
-      { "id": 5,"itemName":'BANCO BICE' },
-      { "id": 6,"itemName":'HSBC BANK (CHILE)' },
-      { "id": 7,"itemName":'BANCO SANTANDER-CHILE' },
-      { "id": 8,"itemName":'ITAÚ CORPBANCA' },
-      { "id": 9,"itemName":'BANCO SECURITY' },
-      { "id":10,"itemName":'BANCO FALABELLA' },
-      { "id":11,"itemName":'BANCO RIPLEY' },
-      { "id":12,"itemName":'RABOBANK CHILE' },
-      { "id":13,"itemName":'BANCO CONSORCIO' },
-      { "id":14,"itemName":'BANCO PENTA' },
-      { "id":15,"itemName":'BANCO BILBAO VIZCAYA ARGENTARIA, CHILE (BBVA)' },
-      { "id":16,"itemName":'BANCO BTG PACTUAL CHILE' },
-      { "id":17,"itemName":'BANCO DEL ESTADO DE CHILE' }
+      { id: 1, itemName: 'BANCO DE CHILE' },
+      { id: 2, itemName: 'BANCO INTERNACIONAL' },
+      { id: 3, itemName: 'SCOTIABANK CHILE' },
+      { id: 4, itemName: 'BANCO DE CREDITO E INVERSIONES' },
+      { id: 5, itemName: 'BANCO BICE' },
+      { id: 6, itemName: 'HSBC BANK (CHILE)' },
+      { id: 7, itemName: 'BANCO SANTANDER-CHILE' },
+      { id: 8, itemName: 'ITAÚ CORPBANCA' },
+      { id: 9, itemName: 'BANCO SECURITY' },
+      { id: 10, itemName: 'BANCO FALABELLA' },
+      { id: 11, itemName: 'BANCO RIPLEY' },
+      { id: 12, itemName: 'RABOBANK CHILE' },
+      { id: 13, itemName: 'BANCO CONSORCIO' },
+      { id: 14, itemName: 'BANCO PENTA' },
+      { id: 15, itemName: 'BANCO BILBAO VIZCAYA ARGENTARIA, CHILE (BBVA)' },
+      { id: 16, itemName: 'BANCO BTG PACTUAL CHILE' },
+      { id: 17, itemName: 'BANCO DEL ESTADO DE CHILE' }
     ];
 
     this.listBancosSettings = {
       singleSelection: true,
-      text:'Seleccione Banco',
-      enableSearchFilter: false
+      text: 'Seleccione Banco',
+      enableSearchFilter: false,
+      showCheckbox: false
     };
 
     this.listDeseos = [
-      { 'id': 1, 'itemName': 'Alegría' },
-      { 'id': 2, 'itemName': 'Amor' },
-      { 'id': 3, 'itemName': 'Bondad' },
-      { 'id': 4, 'itemName': 'Gozo' },
-      { 'id': 5, 'itemName': 'Humildad' },
-      { 'id': 6, 'itemName': 'Paciencia' },
-      { 'id': 7, 'itemName': 'Paz'  }
+      { id: 1, itemName: 'Alegría' },
+      { id: 2, itemName: 'Amor' },
+      { id: 3, itemName: 'Bondad' },
+      { id: 4, itemName: 'Gozo' },
+      { id: 5, itemName: 'Humildad' },
+      { id: 6, itemName: 'Paciencia' },
+      { id: 7, itemName: 'Paz'  }
     ];
 
     this.listDeseosSettings = {
       singleSelection: true,
-      text:'Seleccione Deseo',
-      enableSearchFilter: false
+      text: 'Seleccione Deseo',
+      enableSearchFilter: false,
+      showCheckbox: false
+    };
+
+    this.listTipoCuenta = [
+      { id: 'CC', itemName: 'Cuenta Corriente' },
+      { id: 'CV', itemName: 'Cuenta Vista' },
+      { id: 'CR', itemName: 'Cuenta RUT' }
+    ];
+
+    this.listTipoCuentaSettings = {
+      singleSelection: true,
+      text: 'Seleccione Tipo de Cuenta',
+      enableSearchFilter: false,
+      showCheckbox: false
     };
 
   }
 
-  onChangeBanco( newBanco ) {
-    console.log( newBanco );
-    this.bancoSeleccionado = newBanco;
+  onBancoSelect( banco: any ) {
+    console.log( banco );
+    this.bancoSeleccionado = banco;
     this.evento.banco = this.bancoSeleccionado;
   }
 

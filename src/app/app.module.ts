@@ -1,6 +1,8 @@
-import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,7 +39,7 @@ registerLocaleData(localeCL);
   imports: [
     BrowserModule,
     AppRoutingModule,
-    //NgbModule.forRoot(),
+    NgbModule,
     AngularMultiSelectModule,
     ReactiveFormsModule,
     FormsModule,
