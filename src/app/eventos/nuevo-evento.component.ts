@@ -4,9 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { DeseoAsociado } from './classes/deseo-asociado';
 import { CurrencyPipe } from '@angular/common';
 import { Deseo } from './classes/deseo';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
-declare var $: any;
+import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-nuevo-evento',
@@ -34,6 +32,10 @@ export class NuevoEventoComponent implements OnInit {
   listTipoCuentaSettings = {};
 
   // ################################# //
+
+  public datepick: any;
+
+  public timepick: {hour: number, minute: number} = { hour: 19, minute: 0 };
 
   public evento: Evento = new Evento();
 
@@ -63,11 +65,12 @@ export class NuevoEventoComponent implements OnInit {
     new Banco( 17, 'BANCO DEL ESTADO DE CHILE', true )
   ];
 
-  constructor( private currencyPipe: CurrencyPipe ) {
+  constructor( private currencyPipe: CurrencyPipe, private calendar: NgbCalendar ) {
   }
 
   ngOnInit() {
 
+    // ##### INICIALIZAR LOS SELECTS
     this.listBancos = [
       { id: 1, itemName: 'BANCO DE CHILE' },
       { id: 2, itemName: 'BANCO INTERNACIONAL' },
@@ -125,6 +128,7 @@ export class NuevoEventoComponent implements OnInit {
       showCheckbox: false
     };
 
+
   }
 
   onBancoSelect( banco: any ) {
@@ -143,7 +147,14 @@ export class NuevoEventoComponent implements OnInit {
     this.nuevosDeseos.push( d );
   }
 
+  onDateSelected( newDate: any ){
+    console.log( newDate );
+    this.datepick = newDate;
+  }
+
   nextPage() {
+    console.log( this.timepick );
+    console.log( this.datepick );
     console.log( this.evento );
   }
 

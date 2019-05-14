@@ -1,5 +1,6 @@
+import { DatepickerComponent } from './shared/datepicker/datepicker';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
@@ -20,6 +21,7 @@ import { HomeLoginComponent } from './home/home-login.component';
 import { CurrencyPipe } from '@angular/common';
 import { registerLocaleData } from '@angular/common';
 import localeCL from '@angular/common/locales/es-CL';
+import { SharedModule } from './shared/shared.module';
 
 registerLocaleData(localeCL);
 
@@ -34,7 +36,8 @@ registerLocaleData(localeCL);
     RegisterComponent,
     NuevoEventoComponent,
     EditarEventoComponent,
-    HomeLoginComponent
+    HomeLoginComponent,
+    DatepickerComponent
   ],
   imports: [
     BrowserModule,
@@ -43,10 +46,12 @@ registerLocaleData(localeCL);
     AngularMultiSelectModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    SharedModule
   ],
   providers: [
-    CurrencyPipe
+    CurrencyPipe,
+    {provide: LOCALE_ID, useValue: 'es-CL'}
   ],
   bootstrap: [AppComponent]
 })
