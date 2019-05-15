@@ -22,13 +22,11 @@ export class NuevoEventoComponent implements OnInit {
   // ###### DROPDOWN BANCOS ###### //
 
   listBancos = [];
-  listBancosSelected = [];
   listBancosSettings = {};
 
   // ###### DROPDOWN TIPOCUENTA ###### //
 
   listTipoCuenta = [];
-  listTipoCuentaSelected = [];
   listTipoCuentaSettings = {};
 
   // ################################# //
@@ -38,8 +36,6 @@ export class NuevoEventoComponent implements OnInit {
   public timepick: {hour: number, minute: number} = { hour: 19, minute: 0 };
 
   public evento: Evento = new Evento();
-
-  public bancoSeleccionado: Banco = new Banco();
 
   public nuevosDeseos: DeseoAsociado[] = [];
 
@@ -128,13 +124,24 @@ export class NuevoEventoComponent implements OnInit {
       showCheckbox: false
     };
 
+    this.datepick = this.calendar.getToday();
+
 
   }
 
   onBancoSelect( banco: any ) {
     console.log( banco );
-    this.bancoSeleccionado = banco;
-    this.evento.banco = this.bancoSeleccionado;
+    this.evento.banco = new Banco( banco.id, banco.itemName, true );
+  }
+
+  onTipoCuentaSelect( newTC: any ) {
+    console.log( newTC );
+    this.evento.tipoCuenta = newTC;
+  }
+
+  onDeseoSelec( newDeseo ) {
+    console.log( newDeseo );
+    this.deseoSeleccionado = new Deseo(newDeseo.id, newDeseo.itemName);
   }
 
   onChangeDeseo( newDeseo ) {
@@ -145,6 +152,8 @@ export class NuevoEventoComponent implements OnInit {
   onClickAddDeseo() {
     let d = new DeseoAsociado( this.deseoSeleccionado.id, this.deseoSeleccionado.nombre );
     this.nuevosDeseos.push( d );
+    this.listDeseos.forEach( ( v, i ) => { if(v.id === this.deseoSeleccionado.id){ this.listDeseos.splice( i, 1 ); } });
+    this.listDeseosSelected = [];
   }
 
   onDateSelected( newDate: any ){

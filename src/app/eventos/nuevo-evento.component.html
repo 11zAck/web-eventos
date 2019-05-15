@@ -81,10 +81,9 @@
                                 <div class="col-6 mx-auto form-group">
                                     <label for="banco" class="d-block">Entidad Financiera</label>
                                     <angular2-multiselect 
-                                        [data]="listBancos" 
-                                        [(ngModel)]="listBancosSelected" 
+                                        [data]="listBancos"
                                         [settings]="listBancosSettings"
-                                        (onSelect)="onBancoSelect($event)"   >
+                                        (onSelect)="onBancoSelect($event)">
                                     </angular2-multiselect>
                                     <small id="helpId" class="form-text text-muted">Entidad Financiera donde se realizarán los abonos de tus invitados.</small>
                                 </div>
@@ -93,7 +92,10 @@
                             <div class="row">
                                 <div class="col-6 mx-auto form-group">
                                     <label for="tipo_cuenta" class="d-block">Tipo de cuenta</label>
-                                    <angular2-multiselect [data]="listTipoCuenta" [(ngModel)]="listTipoCuentaSelected" [settings]="listTipoCuentaSettings"   ></angular2-multiselect>
+                                    <angular2-multiselect 
+                                        [data]="listTipoCuenta"
+                                        [settings]="listTipoCuentaSettings"
+                                        (onSelect)="onTipoCuentaSelect($event)"></angular2-multiselect>
                                     <small id="helpId" class="form-text text-muted">Tipo de cuenta de tu entidad financiera.</small>
                                 </div>
                             </div>
@@ -127,7 +129,12 @@
                             <div class="space-70"></div>
 
                             <div class="form-inline">
-                                <angular2-multiselect [data]="listDeseos" [(ngModel)]="listDeseosSelected"  [settings]="listDeseosSettings" style="width:200px;"   ></angular2-multiselect>
+                                <angular2-multiselect 
+                                    [data]="listDeseos" 
+                                    [(ngModel)]="listDeseosSelected"  
+                                    [settings]="listDeseosSettings" 
+                                    (onSelect)="onDeseoSelec($event)" 
+                                    style="width:200px;"></angular2-multiselect>
                                 <button class="btn btn-primary btn-round mx-2" type="button" (click)="onClickAddDeseo()"><i class="now-ui-icons ui-1_simple-add mr-2"></i> Agregar deseo</button>
                             </div>
 
