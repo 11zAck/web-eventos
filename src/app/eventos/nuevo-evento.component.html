@@ -10,6 +10,7 @@
             </div>
         </div>
     </div>
+    <!-- NUEVO EVENTO :: SECCION PRINCIPAL -->
     <div class="section">
         <div class="container">
             <div class="row">
@@ -82,6 +83,7 @@
                                     <label for="banco" class="d-block">Entidad Financiera</label>
                                     <angular2-multiselect 
                                         [data]="listBancos"
+                                        [(ngModel)]="listBancosSelected"
                                         [settings]="listBancosSettings"
                                         (onSelect)="onBancoSelect($event)">
                                     </angular2-multiselect>
@@ -94,6 +96,7 @@
                                     <label for="tipo_cuenta" class="d-block">Tipo de cuenta</label>
                                     <angular2-multiselect 
                                         [data]="listTipoCuenta"
+                                        [(ngModel)]="listTipoCuentaSelected"
                                         [settings]="listTipoCuentaSettings"
                                         (onSelect)="onTipoCuentaSelect($event)"></angular2-multiselect>
                                     <small id="helpId" class="form-text text-muted">Tipo de cuenta de tu entidad financiera.</small>
@@ -149,16 +152,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let d of nuevosDeseos">
+                                    <tr *ngFor="let d of nuevosDeseos; let i = index">
                                         <td scope="row">
                                             <div class="form-inline">
 
-                                                <button type="button" class="btn btn-secondary btn-icon btn-round"><i class="now-ui-icons ui-1_simple-delete"></i></button>
+                                                <button type="button" class="btn btn-secondary btn-icon btn-round"
+                                                    (click)="decreaseCount(d)">
+                                                    <i class="now-ui-icons ui-1_simple-delete"></i>
+                                                </button>
                                                 <div class="form-group mb-0 mx-2">
                                                     <input type="text" class="form-control text-center" name="cant" id="cant" placeholder="0" style="width: 80px" 
-                                                        [value]="d.cantidad" >
+                                                        [(ngModel)]="d.cantidad" >
                                                 </div>
-                                                <button type="button" class="btn btn-primary btn-icon btn-round"><i class="now-ui-icons ui-1_simple-add"></i></button>
+                                                <button type="button" class="btn btn-primary btn-icon btn-round"
+                                                    (click)="increaseCount(d)">
+                                                    <i class="now-ui-icons ui-1_simple-add"></i>
+                                                </button>
                                                 
                                             </div>
                                         </td>
@@ -166,13 +175,14 @@
                                         <td>
                                             <div class="form-group mb-0">
                                                 <input type="text" class="form-control text-right" name="valor" id="valor" aria-describedby="helpId" placeholder="$ 0" 
-                                                    value="{{d.valor | currency:'CLP':'symbol-narrow':'':'es-CL' }}" />
+                                                    [(ngModel)]="d.valor"/>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-group mb-0">
                                                 <input type="text" class="form-control text-right" name="total" id="total" aria-describedby="helpId" placeholder="$ 0" 
-                                                    value="{{d.valor * d.cantidad | currency:'CLP':'symbol-narrow':'':'es-CL'}}" />
+                                                    [(ngModel)]="d.valor * d.cantidad"
+                                                    readonly/>
                                             </div>
                                         </td>
                                         <td>
@@ -207,6 +217,25 @@
             <div class="space-70"></div>
 
             
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-6 mx-auto form-group">
+                  <label for="nombre">Agregar invitados</label>
+                  <input type="text" class="form-control" id="email" name="email" aria-describedby="helpId" placeholder="ejemplo@email.cl" [(ngModel)]="newEmail" email/>
+                  <small id="helpId" class="form-text text-muted">Puedes registrar a tus invitados por su correo electrónico.</small>
+                </div>
+                
+            </div>
+            <div class="row"> 
+                <div class="offset-8 col-2 mr-auto">
+                  <button class="btn btn-primary">Invitar</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -9,5 +9,5 @@ export class Invitado {
     modificacion?: Date;
     creador?: number;
     existe?: boolean;
-    
+
 }

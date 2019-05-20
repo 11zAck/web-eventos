@@ -1,5 +1,5 @@
 export class DeseoAsociado {
-    
+
     id?: number;
     nombre?: string;
     cantidad?: number;

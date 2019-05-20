@@ -5,6 +5,7 @@ import { DeseoAsociado } from './classes/deseo-asociado';
 import { CurrencyPipe } from '@angular/common';
 import { Deseo } from './classes/deseo';
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
+import { Invitado } from './classes/invitado';
 
 @Component({
   selector: 'app-nuevo-evento',
@@ -22,11 +23,13 @@ export class NuevoEventoComponent implements OnInit {
   // ###### DROPDOWN BANCOS ###### //
 
   listBancos = [];
+  listBancosSelected = [];
   listBancosSettings = {};
 
   // ###### DROPDOWN TIPOCUENTA ###### //
 
   listTipoCuenta = [];
+  listTipoCuentaSelected = [];
   listTipoCuentaSettings = {};
 
   // ################################# //
@@ -35,31 +38,16 @@ export class NuevoEventoComponent implements OnInit {
 
   public timepick: {hour: number, minute: number} = { hour: 19, minute: 0 };
 
+  // ################################# //
   public evento: Evento = new Evento();
 
   public nuevosDeseos: DeseoAsociado[] = [];
 
-  public deseoSeleccionado: Deseo;
+  public invitados: Invitado[] = [];
 
-  public bancos: Array<Banco> = [
-    new Banco(  1, 'BANCO DE CHILE', true ),
-    new Banco(  2, 'BANCO INTERNACIONAL', true ),
-    new Banco(  3, 'SCOTIABANK CHILE', true ),
-    new Banco(  4, 'BANCO DE CREDITO E INVERSIONES', true ),
-    new Banco(  5, 'BANCO BICE', true ),
-    new Banco(  6, 'HSBC BANK (CHILE)', true ),
-    new Banco(  7, 'BANCO SANTANDER-CHILE', true ),
-    new Banco(  8, 'ITAÚ CORPBANCA', true ),
-    new Banco(  9, 'BANCO SECURITY', true ),
-    new Banco( 10, 'BANCO FALABELLA', true ),
-    new Banco( 11, 'BANCO RIPLEY', true ),
-    new Banco( 12, 'RABOBANK CHILE', true ),
-    new Banco( 13, 'BANCO CONSORCIO', true ),
-    new Banco( 14, 'BANCO PENTA', true ),
-    new Banco( 15, 'BANCO BILBAO VIZCAYA ARGENTARIA, CHILE (BBVA)', true ),
-    new Banco( 16, 'BANCO BTG PACTUAL CHILE', true ),
-    new Banco( 17, 'BANCO DEL ESTADO DE CHILE', true )
-  ];
+  public newEmail: string;
+
+  public deseoSeleccionado: Deseo;
 
   constructor( private currencyPipe: CurrencyPipe, private calendar: NgbCalendar ) {
   }
@@ -139,20 +127,17 @@ export class NuevoEventoComponent implements OnInit {
     this.evento.tipoCuenta = newTC;
   }
 
-  onDeseoSelec( newDeseo ) {
-    console.log( newDeseo );
-    this.deseoSeleccionado = new Deseo(newDeseo.id, newDeseo.itemName);
-  }
-
-  onChangeDeseo( newDeseo ) {
-    console.log( newDeseo );
-    this.deseoSeleccionado = newDeseo;
+  onDeseoSelec( deseo ) {
+    this.deseoSeleccionado = new Deseo(deseo.id, deseo.itemName);
   }
 
   onClickAddDeseo() {
-    let d = new DeseoAsociado( this.deseoSeleccionado.id, this.deseoSeleccionado.nombre );
-    this.nuevosDeseos.push( d );
-    this.listDeseos.forEach( ( v, i ) => { if(v.id === this.deseoSeleccionado.id){ this.listDeseos.splice( i, 1 ); } });
+    this.nuevosDeseos.push( new DeseoAsociado(this.deseoSeleccionado.id, this.deseoSeleccionado.nombre) );
+    this.listDeseos.forEach( ( v, i ) => {
+      if ( v.id === this.deseoSeleccionado.id ) {
+        this.listDeseos.splice( i, 1 );
+      }
+    });
     this.listDeseosSelected = [];
   }
 
@@ -167,4 +152,35 @@ export class NuevoEventoComponent implements OnInit {
     console.log( this.evento );
   }
 
+  increaseCount( c: DeseoAsociado ) {
+    c.cantidad++;
+  }
+
+  decreaseCount( c: DeseoAsociado ) {
+    c.cantidad--;
+  }
+
 }
+// console.log( this.currencyPipe.transform( amount, 'CLP', '$ ', '', 'es-CL') );
+
+/*
+public bancos: Array<Banco> = [
+  new Banco(  1, 'BANCO DE CHILE', true ),
+  new Banco(  2, 'BANCO INTERNACIONAL', true ),
+  new Banco(  3, 'SCOTIABANK CHILE', true ),
+  new Banco(  4, 'BANCO DE CREDITO E INVERSIONES', true ),
+  new Banco(  5, 'BANCO BICE', true ),
+  new Banco(  6, 'HSBC BANK (CHILE)', true ),
+  new Banco(  7, 'BANCO SANTANDER-CHILE', true ),
+  new Banco(  8, 'ITAÚ CORPBANCA', true ),
+  new Banco(  9, 'BANCO SECURITY', true ),
+  new Banco( 10, 'BANCO FALABELLA', true ),
+  new Banco( 11, 'BANCO RIPLEY', true ),
+  new Banco( 12, 'RABOBANK CHILE', true ),
+  new Banco( 13, 'BANCO CONSORCIO', true ),
+  new Banco( 14, 'BANCO PENTA', true ),
+  new Banco( 15, 'BANCO BILBAO VIZCAYA ARGENTARIA, CHILE (BBVA)', true ),
+  new Banco( 16, 'BANCO BTG PACTUAL CHILE', true ),
+  new Banco( 17, 'BANCO DEL ESTADO DE CHILE', true )
+];
+*/
