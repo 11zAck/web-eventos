@@ -15,14 +15,14 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NuevoEventoComponent } from './eventos/nuevo-evento.component';
-import { EditarEventoComponent } from './eventos/editar-evento.component';
+import { NuevoEventoComponent } from './eventos/admin/nuevo-evento.component';
+import { EditarEventoComponent } from './eventos/admin/editar-evento.component';
 import { HomeLoginComponent } from './home/home-login.component';
 import { CurrencyPipe } from '@angular/common';
 import { registerLocaleData } from '@angular/common';
 import localeCL from '@angular/common/locales/es-CL';
 import { SharedModule } from './shared/shared.module';
-import { SoyInvitadoComponent } from './eventos/soy-invitado.component';
+import { SoyInvitadoComponent } from './eventos/invitado/soy-invitado.component';
 
 registerLocaleData(localeCL);
 

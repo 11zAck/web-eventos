@@ -1,11 +1,11 @@
-import { Banco } from './classes/banco';
-import { Evento } from './classes/evento';
+import { Banco } from '../classes/banco';
+import { Evento } from '../classes/evento';
 import { Component, OnInit } from '@angular/core';
-import { DeseoAsociado } from './classes/deseo-asociado';
+import { DeseoAsociado } from '../classes/deseo-asociado';
 import { CurrencyPipe } from '@angular/common';
-import { Deseo } from './classes/deseo';
+import { Deseo } from '../classes/deseo';
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
-import { Invitado } from './classes/invitado';
+import { Invitado } from '../classes/invitado';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 

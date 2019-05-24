@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SoyInvitadoComponent implements OnInit {
 
+  codigo: string = '';
+
   constructor() { }
 
   ngOnInit() {

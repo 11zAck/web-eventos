@@ -4,9 +4,9 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './default/page-not-found.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { NuevoEventoComponent } from './eventos/nuevo-evento.component';
-import { EditarEventoComponent } from './eventos/editar-evento.component';
-import { SoyInvitadoComponent } from './eventos/soy-invitado.component';
+import { NuevoEventoComponent } from './eventos/admin/nuevo-evento.component';
+import { EditarEventoComponent } from './eventos/admin/editar-evento.component';
+import { SoyInvitadoComponent } from './eventos/invitado/soy-invitado.component';
 
 const routes: Routes = [
   {path: '',  redirectTo: 'home', pathMatch: 'full'},
