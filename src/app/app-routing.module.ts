@@ -6,6 +6,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { NuevoEventoComponent } from './eventos/nuevo-evento.component';
 import { EditarEventoComponent } from './eventos/editar-evento.component';
+import { SoyInvitadoComponent } from './eventos/soy-invitado.component';
 
 const routes: Routes = [
   {path: '',  redirectTo: 'home', pathMatch: 'full'},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'new-event', component: NuevoEventoComponent},
   {path: 'edit-event', component: EditarEventoComponent},
+  {path: 'soy-invitado', component: SoyInvitadoComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 

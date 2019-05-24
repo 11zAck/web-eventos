@@ -22,6 +22,7 @@ import { CurrencyPipe } from '@angular/common';
 import { registerLocaleData } from '@angular/common';
 import localeCL from '@angular/common/locales/es-CL';
 import { SharedModule } from './shared/shared.module';
+import { SoyInvitadoComponent } from './eventos/soy-invitado.component';
 
 registerLocaleData(localeCL);
 
@@ -37,7 +38,8 @@ registerLocaleData(localeCL);
     NuevoEventoComponent,
     EditarEventoComponent,
     HomeLoginComponent,
-    DatepickerComponent
+    DatepickerComponent,
+    SoyInvitadoComponent
   ],
   imports: [
     BrowserModule,

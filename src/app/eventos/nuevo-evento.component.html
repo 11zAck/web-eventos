@@ -11,7 +11,7 @@
         </div>
     </div>
     <!-- NUEVO EVENTO :: SECCION PRINCIPAL -->
-    <div class="section">
+    <div class="section" *ngIf="step1">
         <div class="container">
             <div class="row">
                 <div class="col d-flex justify-content-center">
@@ -220,22 +220,62 @@
         </div>
     </div>
 
-    <div class="section">
+    <div class="section" *ngIf="step2">
         <div class="container">
+            <h3 class="text-center border-bottom padding-">Agrega invitados a tu evento</h3>
             <div class="row">
-                
                 <div class="col-6 mx-auto form-group">
-                  <label for="nombre">Agregar invitados</label>
-                  <input type="text" class="form-control" id="email" name="email" aria-describedby="helpId" placeholder="ejemplo@email.cl" [(ngModel)]="newEmail" email/>
-                  <small id="helpId" class="form-text text-muted">Puedes registrar a tus invitados por su correo electrónico.</small>
+                    <label for="nombreInv">Nombres</label>
+                    <input type="text" class="form-control" id="nombreInv" name="nombreInv" aria-describedby="helpId" placeholder="Nombres" [(ngModel)]="nuevoInvitado.nombres" />
+                    <small id="helpId" class="form-text text-muted">Nombres de tu invitado</small>
                 </div>
-                
             </div>
+            <div class="row">
+                <div class="col-6 mx-auto form-group">
+                    <label for="apellidoInv">Apellidos</label>
+                    <input type="text" class="form-control" id="apellidoInv" name="apellidoInv" aria-describedby="helpId" placeholder="Apellidos" [(ngModel)]="nuevoInvitado.apellidos" email />
+                    <small id="helpId" class="form-text text-muted">Apellidos de tu invitado.</small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mx-auto form-group">
+                  <label for="emailInv">Correo electrónico</label>
+                  <input type="email" class="form-control" id="emailInv" name="emailInv" aria-describedby="helpId" placeholder="ejemplo@email.cl" [(ngModel)]="nuevoInvitado.email" email/>
+                  <small id="helpId" class="form-text text-muted">Correo electrónico de tu nuevo invitado.</small>
+                </div>    
+            </div>
+
             <div class="row"> 
-                <div class="offset-8 col-2 mr-auto">
-                  <button class="btn btn-primary">Invitar</button>
+                <div class="col-6 mx-auto">
+                  <button class="btn btn-primary btn-block btn-round" (click)="agregarInvitado()">Invitar</button>
                 </div>
             </div>
+            <div class="space-50"></div>
+            <div class="row">
+                <div class="col-6 mx-auto">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th colspan="2">Invitados</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let i of invitados">
+                                <td>{{ i.email }}</td>
+                                <td class="td-actions text-right">
+                                    <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-round" (click)="removerInvitado( i )">
+                                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row justify-content-end">
+                <button class="btn btn-primary btn-round" (click)="terminarEvento()">Finalizar</button>
+            </div>
+            <div class="space-70"></div>
         </div>
     </div>
 </div>

@@ -6,6 +6,8 @@ import { CurrencyPipe } from '@angular/common';
 import { Deseo } from './classes/deseo';
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { Invitado } from './classes/invitado';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nuevo-evento',
@@ -35,25 +37,39 @@ export class NuevoEventoComponent implements OnInit {
   // ################################# //
 
   public datepick: any;
-
   public timepick: {hour: number, minute: number} = { hour: 19, minute: 0 };
+
+  // ################################# //
+
+  public step1: boolean;
+  public step2: boolean;
 
   // ################################# //
   public evento: Evento = new Evento();
 
   public nuevosDeseos: DeseoAsociado[] = [];
 
-  public invitados: Invitado[] = [];
+  public nuevoInvitado: Invitado = new Invitado();
+
+  public invitados: Invitado[] = [
+    new Invitado(1, 'Isaac', 'Méndez', 'isaac@gmail.com'),
+    new Invitado(2, 'René', 'Gonzalez', 'rene@gmail.com'),
+    new Invitado(3, 'Hugo', 'Hernandez', 'hugo@gmail.com')
+  ];
 
   public newEmail: string;
 
   public deseoSeleccionado: Deseo;
 
-  constructor( private currencyPipe: CurrencyPipe, private calendar: NgbCalendar ) {
-  }
+  constructor( 
+    private currencyPipe: CurrencyPipe,
+    private calendar: NgbCalendar,
+    private router: Router
+  ) { }
 
   ngOnInit() {
-
+    this.step1 = true;
+    this.step2 = false;
     // ##### INICIALIZAR LOS SELECTS
     this.listBancos = [
       { id: 1, itemName: 'BANCO DE CHILE' },
@@ -141,7 +157,7 @@ export class NuevoEventoComponent implements OnInit {
     this.listDeseosSelected = [];
   }
 
-  onDateSelected( newDate: any ){
+  onDateSelected( newDate: any ) {
     console.log( newDate );
     this.datepick = newDate;
   }
@@ -150,6 +166,8 @@ export class NuevoEventoComponent implements OnInit {
     console.log( this.timepick );
     console.log( this.datepick );
     console.log( this.evento );
+    this.step1 = false;
+    this.step2 = true;
   }
 
   increaseCount( c: DeseoAsociado ) {
@@ -160,6 +178,31 @@ export class NuevoEventoComponent implements OnInit {
     c.cantidad--;
   }
 
+  agregarInvitado() {
+    console.log( 'Nuevo invitado: ', this.nuevoInvitado );
+    this.invitados.push( this.nuevoInvitado );
+    this.nuevoInvitado = new Invitado();
+  }
+
+  removerInvitado( i: Invitado ) {
+    Swal.fire('Invitado', `¿Retirar invitación para ${ i.nombres }?`, 'warning').then((v) => {
+      if ( v ) {
+        console.log('Invitado eliminado: ', i );
+        this.invitados.forEach( (e, index) => {
+          if ( e === i ) {
+            this.invitados.splice( index, 1 );
+          }
+        });
+      }
+    }); //yael swewkis
+  }
+
+
+  terminarEvento() {
+    Swal.fire('Nuevo evento', 'Evento creado con éxito', 'success').then(() => {
+      this.router.navigate(['/home']);
+    });
+  }
 }
 // console.log( this.currencyPipe.transform( amount, 'CLP', '$ ', '', 'es-CL') );
 
