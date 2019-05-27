@@ -194,7 +194,7 @@ export class NuevoEventoComponent implements OnInit {
           }
         });
       }
-    }); //yael swewkis
+    });
   }
 
 

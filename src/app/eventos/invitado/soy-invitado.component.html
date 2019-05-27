@@ -14,9 +14,9 @@
             <div class="form-group">
                 <label for="codigo"><h4 class="m-0">Código de invitación</h4></label>
                 <span id="helpId" class="form-text text-muted">Ingresa aquí el código de tu invitación.</span>
-                <input type="text" class="form-control" name="codigo" id="codigo" aria-describedby="helpId" placeholder="XXXX" [(ngModel)]="codigo" />
+                <input type="text" class="form-control" name="codigo" id="codigo" aria-describedby="helpId" placeholder="XXXX" [(ngModel)]="codigo" #inputcodigo/>
             </div>
-            <button type="button" class="btn btn-primary btn-round">Verificar</button>
+            <button type="button" class="btn btn-primary btn-round" (click)="verificar()">Verificar</button>
           </div>
         </div>
     </div>

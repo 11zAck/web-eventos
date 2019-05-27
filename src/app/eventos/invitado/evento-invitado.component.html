@@ -1,0 +1,70 @@
+<div class="wrapper">
+  <div class="page-header page-header-xsmall">
+    <div class="page-header-image rellax-header" data-rellax-speed="-8"
+      style="background-image: url('assets/img/bg6.jpg'); transform: translate3d(0px, 0px, 0px);"></div>
+    <div class="content-center">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <h1 class="title">Felicidades</h1>
+          <h4>¡Encontramos tu invitación!</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+
+          <div class="row">
+            <div class="col-8 mx-auto text-justify">
+              <p>Felicitaciones, hemos encontrado el evento del cual eres invitado.
+              <br> Ahora es tu turno de regalar tus mejores deseos. 
+              <br><small> Recuerda que estos tienen un valor real por lo que deberás
+              cancelar su monto posteriormente.</small></p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-8 mx-auto form-group">
+              <label for="banco" class="d-block">Deseos disponibles para regalar</label>
+              <angular2-multiselect 
+                [data]="listDeseos" 
+                [(ngModel)]="listDeseosSelected" 
+                [settings]="listDeseosSettings"
+                (onSelect)="onDeseoSelect($event)">
+              </angular2-multiselect>
+              <small id="helpId" class="form-text text-muted">Estos son los deseos que puedes regalar <i class="fas fa-heart text-danger"></i></small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-8 mx-auto form-group">
+              <label for="cantidad">Cantidad que regalarás</label>
+              <input type="number" class="form-control" placeholder="0">
+              <small id="helpId" class="form-text text-muted">Mientras más deseos regales, mejor <i class="fas fa-gift text-success"></i></small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-8 mx-auto form-group">
+              <label for="cantidad">Total a regalar</label>
+              <input type="number" class="form-control" placeholder="0" readonly>
+              <small id="helpId" class="form-text text-muted">Este es el valor real de tus deseos a regalar</small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-8 mx-auto text-center">
+              <p>Presiona continuar si estás de acuerdo con el monto de tu regalo.</p>
+              <button type="button" class="btn btn-primary btn-round">Continuar</button>
+            </div>
+          </div>
+
+          <div class="space-70"></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
