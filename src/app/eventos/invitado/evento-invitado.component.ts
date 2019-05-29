@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Evento } from '../classes/evento';
 
 @Component({
   selector: 'app-evento-invitado',
@@ -13,13 +14,18 @@ export class EventoInvitadoComponent implements OnInit {
   listDeseosSelected = [];
   listDeseosSettings = {};
 
-  // ###### OTRAS PROPIEDADES DE CLASE ###### //
-
+  // ###### PROPIEDADES DE CLASE ###### //
+  evento: Evento = new Evento();
 
   /**
    * Constructor
    */
-  constructor() { }
+  constructor() { 
+    this.evento.nombre = "Aniversario de prueba";
+    this.evento.fechaEvento = new Date();
+    this.evento.descripcion = "Este es el 30° aniversario de mis padres";
+    this.evento.direccion = "Nueva esperanza 345, Puente Alto";
+  }
 
   ngOnInit() {
     this.listDeseos = [

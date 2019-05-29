@@ -17,13 +17,29 @@
         <div class="col">
 
           <div class="row">
-            <div class="col-8 mx-auto text-justify">
-              <p>Felicitaciones, hemos encontrado el evento del cual eres invitado.
-              <br> Ahora es tu turno de regalar tus mejores deseos. 
-              <br><small> Recuerda que estos tienen un valor real por lo que deberás
-              cancelar su monto posteriormente.</small></p>
+            <div class="col-8 mx-auto">
+              <h2 class="card-title">¡Felicitaciones! <small>Encontramos el evento al que te invitaron.</small></h2>
+              <div class="card card-plain card-blog">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="card-image">
+                      <img src="/assets/img/bg5.jpg" alt="Imagen de evento" class="img img-raised rounded">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <h3 class="card-title">{{ evento.nombre }}</h3>
+                    <p class="card-description">A realizarse el día {{ evento.fechaEvento | date:'dd MMMM yyyy' }} a las {{ evento.horaEvento }},
+                        en {{ evento.direccion }}. ¿Es correcta la información?
+                        Ahora es tu turno de regalar tus mejores deseos. 
+                    </p>
+                    <small>Recuerda que estos tienen un valor real por lo que deberás cancelar su monto posteriormente.</small>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+
+          <div class="space-70"></div>
 
           <div class="row">
             <div class="col-8 mx-auto form-group">
