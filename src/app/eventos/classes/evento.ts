@@ -29,4 +29,15 @@ export class Evento {
 
     deseos?: Array<DeseoAsociado>;
 
+
+    listDeseosToSelect(): any {
+        if ( this.deseos.length > 0 ) {
+            let listado =[];
+            this.deseos.forEach( (v, i) => {
+                listado.push({ id: v.id, itemname: v.nombre });
+            });
+            return listado;
+        }
+        return null;
+    }
 }

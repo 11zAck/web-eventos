@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Evento } from '../classes/evento';
+import { Deseo } from '../classes/deseo';
 
 @Component({
   selector: 'app-evento-invitado',
@@ -23,20 +24,22 @@ export class EventoInvitadoComponent implements OnInit {
   constructor() { 
     this.evento.nombre = "Aniversario de prueba";
     this.evento.fechaEvento = new Date();
+    this.evento.horaEvento = new Date();
     this.evento.descripcion = "Este es el 30° aniversario de mis padres";
     this.evento.direccion = "Nueva esperanza 345, Puente Alto";
+    this.evento.deseos = [
+      new Deseo(1, 'Alegria' ),
+      new Deseo(2, 'Amor' ),
+      new Deseo(3, 'Bondad' ),
+      new Deseo(4, 'Gozo' ),
+      new Deseo(5, 'Humildad' ),
+      new Deseo(6, 'Paciencia' ),
+      new Deseo(7, 'Paz' )
+    ];
+    this.listDeseos = this.evento.listDeseosToSelect();
   }
 
   ngOnInit() {
-    this.listDeseos = [
-      { id: 1, itemName: 'Alegría' },
-      { id: 2, itemName: 'Amor' },
-      { id: 3, itemName: 'Bondad' },
-      { id: 4, itemName: 'Gozo' },
-      { id: 5, itemName: 'Humildad' },
-      { id: 6, itemName: 'Paciencia' },
-      { id: 7, itemName: 'Paz' }
-    ];
 
     this.listDeseosSettings = {
       singleSelection: true,
