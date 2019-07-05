@@ -31,11 +31,13 @@ export class Evento {
 
 
     listDeseosToSelect(): any {
+        console.log('largo: ' + this.deseos.length );
         if ( this.deseos.length > 0 ) {
-            let listado =[];
+            let listado = [];
             this.deseos.forEach( (v, i) => {
-                listado.push({ id: v.id, itemname: v.nombre });
+                listado.push({ id: v.id, itemName: v.nombre });
             });
+            console.log('listado: ', listado );
             return listado;
         }
         return null;
