@@ -1,0 +1,56 @@
+<div class="wrapper">
+  <!-- CABECERA -->
+  <div class="page-header page-header-xsmall">
+    <div class="page-header-image rellax-header" data-rellax-speed="-8"
+      style="background-image: url('assets/img/bg6.jpg'); transform: translate3d(0px, 0px, 0px);"></div>
+    <div class="content-center">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <h1 class="title">Mis eventos</h1>
+          <h4>Modifica tus eventos</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUERPO -->
+  <div class="section">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-12">
+
+          <div class="alert alert-primary" role="alert" *ngIf="eventos?.length < 1">
+            <strong>Eventos</strong>
+            <p>No existen eventos activos en tus registros.</p>
+            <a [routerLink]="['/nuevo']" class="alert-link">Ir a crear un evento</a>
+          </div>
+
+          <table class="table" *ngIf="eventos?.length > 0">
+            <thead>
+              <tr>
+                <th>Evento</th>
+                <th>Fecha del evento</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let e of eventos; let i = index">
+                <td scope="row">{{e.nombre}}</td>
+                <td>{{ e.fechaEvento | date: 'dd/MM/yyyy' }}</td>
+                <td>
+                  <button class="btn btn-danger btn-icon btn-round" (click)="editarEvento( e )">
+                    <i class="fas fa-pencil-alt"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    
+        </div>
+      </div>
+    
+    </div>
+  </div>
+
+</div>

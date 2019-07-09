@@ -144,34 +144,14 @@
                             <table class="table" *ngIf="nuevosDeseos?.length > 0">
                                 <thead>
                                     <tr>
-                                        <th>Cantidad</th>
                                         <th>Deseo</th>
-                                        <th>Valor</th>
-                                        <th>Total</th>
+                                        <th>Valor en pesos</th>
                                         <th>Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let d of nuevosDeseos; let i = index">
-                                        <td scope="row">
-                                            <div class="form-inline">
-
-                                                <button type="button" class="btn btn-secondary btn-icon btn-round"
-                                                    (click)="decreaseCount(d)">
-                                                    <i class="now-ui-icons ui-1_simple-delete"></i>
-                                                </button>
-                                                <div class="form-group mb-0 mx-2">
-                                                    <input type="text" class="form-control text-center" name="cant" id="cant" placeholder="0" style="width: 80px" 
-                                                        [(ngModel)]="d.cantidad" >
-                                                </div>
-                                                <button type="button" class="btn btn-primary btn-icon btn-round"
-                                                    (click)="increaseCount(d)">
-                                                    <i class="now-ui-icons ui-1_simple-add"></i>
-                                                </button>
-                                                
-                                            </div>
-                                        </td>
-                                        <td>{{d.nombre}}</td>
+                                        <td scope="row">{{d.nombre}}</td>
                                         <td>
                                             <div class="form-group mb-0">
                                                 <input type="text" class="form-control text-right" name="valor" id="valor" aria-describedby="helpId" placeholder="$ 0" 
@@ -179,14 +159,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="form-group mb-0">
-                                                <input type="text" class="form-control text-right" name="total" id="total" aria-describedby="helpId" placeholder="$ 0" 
-                                                    [(ngModel)]="d.valor * d.cantidad"
-                                                    readonly/>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btn-icon btn-round">
+                                            <button class="btn btn-danger btn-icon btn-round" (click)="eliminarFilaDeseo( d )">
                                                 <i class="fas fa-times"></i>
                                             </button>
                                         </td>

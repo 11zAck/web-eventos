@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Evento } from '../classes/evento';
 import { Deseo } from '../classes/deseo';
 import { DeseoAsociado } from '../classes/deseo-asociado';
+import { formatCurrency } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-evento-invitado',
@@ -18,12 +20,19 @@ export class EventoInvitadoComponent implements OnInit {
 
   // ###### PROPIEDADES DE CLASE ###### //
   evento: Evento = new Evento();
+  deseoAsociado: DeseoAsociado;
   valorDeseoAsoc: number = 0;
+  cantidadDeseo: number = 0;
+  totalValor: string = '0';
 
+  step1: boolean = true;
+  step2: boolean = false;
   /**
    * Constructor
    */
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
     this.evento.nombre = "Aniversario de prueba";
     this.evento.fechaEvento = new Date();
     this.evento.horaEvento = new Date();
@@ -49,19 +58,37 @@ export class EventoInvitadoComponent implements OnInit {
       enableSearchFilter: false,
       showCheckbox: false
     };
+    this.step1 = true;
   }
 
   onDeseoSelect( deseo ): void {
-    console.log( 'Deseo seleccionado: ', deseo );
     const deseoUnico: {id: number, itemName: string } = this.listDeseosSelected[0];
-    let deseoAsociado: DeseoAsociado = null;
+    this.deseoAsociado = null;
     this.evento.deseos.forEach( (v, i) => {
       if ( v.id === deseoUnico.id ) {
-        deseoAsociado = v;
+        this.deseoAsociado = v;
       }
     });
-    console.log( deseoAsociado );
-    this.valorDeseoAsoc = deseoAsociado.valor;
+    this.valorDeseoAsoc = this.deseoAsociado.valor;
+  }
+
+  onInputCantidad( ): void {
+    this.totalValor = formatCurrency( this.cantidadDeseo * this.valorDeseoAsoc, 'es_CL', '$ ', 'CLP');
+  }
+
+  clickContinuar() {
+    // this.router.navigate(['/pre-pago']);
+    this.step1 = false;
+    this.step2 = true;
+  }
+
+  clickRegresar() {
+    this.step2 = false;
+    this.step1 = true;
+  }
+
+  clickPagar() {
+    console.log('Pagar');
   }
 
 }

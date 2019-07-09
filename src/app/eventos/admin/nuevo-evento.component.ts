@@ -129,8 +129,6 @@ export class NuevoEventoComponent implements OnInit {
     };
 
     this.datepick = this.calendar.getToday();
-
-
   }
 
   onBancoSelect( banco: any ) {
@@ -148,13 +146,18 @@ export class NuevoEventoComponent implements OnInit {
   }
 
   onClickAddDeseo() {
-    this.nuevosDeseos.push( new DeseoAsociado(this.deseoSeleccionado.id, this.deseoSeleccionado.nombre) );
-    this.listDeseos.forEach( ( v, i ) => {
-      if ( v.id === this.deseoSeleccionado.id ) {
-        this.listDeseos.splice( i, 1 );
-      }
-    });
-    this.listDeseosSelected = [];
+    if ( this.deseoSeleccionado === null || this.listDeseosSelected.length === 0 ) {
+      Swal.fire('Asociar deseo', 'Debe seleccionar un deseo antes de asociarlo al evento.', 'warning');
+    } else {
+      this.nuevosDeseos.push( new DeseoAsociado(this.deseoSeleccionado.id, this.deseoSeleccionado.nombre) );
+      this.listDeseos.forEach( ( v, i ) => {
+        if ( v.id === this.deseoSeleccionado.id ) {
+          this.listDeseos.splice( i, 1 );
+        }
+      });
+      this.deseoSeleccionado = null;
+      this.listDeseosSelected = [];
+    }
   }
 
   onDateSelected( newDate: any ) {
@@ -202,6 +205,15 @@ export class NuevoEventoComponent implements OnInit {
     Swal.fire('Nuevo evento', 'Evento creado con éxito', 'success').then(() => {
       this.router.navigate(['/home']);
     });
+  }
+
+  eliminarFilaDeseo( d ) {
+    console.log('d: ', d);
+    Swal.fire('Eliminar deseo', '¿Desea eliminar realmente este deseo?', 'warning').then(( rsp ) => {
+      if ( rsp ) {
+        console.log("eliminar");
+      }
+    })
   }
 }
 // console.log( this.currencyPipe.transform( amount, 'CLP', '$ ', '', 'es-CL') );

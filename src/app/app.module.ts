@@ -24,7 +24,7 @@ import localeCL from '@angular/common/locales/es-CL';
 import { SharedModule } from './shared/shared.module';
 import { SoyInvitadoComponent } from './eventos/invitado/soy-invitado.component';
 import { EventoInvitadoComponent } from './eventos/invitado/evento-invitado.component';
-import { PrePagoComponent } from './eventos/invitado/pre-pago.component';
+import { EventosComponent } from './eventos/admin/eventos.component';
 
 registerLocaleData(localeCL);
 
@@ -43,7 +43,7 @@ registerLocaleData(localeCL);
     DatepickerComponent,
     SoyInvitadoComponent,
     EventoInvitadoComponent,
-    PrePagoComponent
+    EventosComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Evento } from '../classes/evento';
+import { Observable } from 'rxjs';
+import { ServicioEventosService } from '../../service/servicio-eventos.service';
 
 @Component({
   selector: 'app-editar-evento',
@@ -7,9 +11,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditarEventoComponent implements OnInit {
 
-  constructor() { }
+  evento$: Observable<Evento>;
+  idEvento: number;
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private servicioEvento: ServicioEventosService
+  ) { }
 
   ngOnInit() {
+    /*
+    this.evento$ = this.activatedRoute.paramMap.subscribe(
+      ( params: ParamMap ) => {
+        this.idEvento = +params.get('id');
+        return 
+      })
+    );
+    */
   }
 
 }

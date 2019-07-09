@@ -41,51 +41,79 @@
           </div>
 
           <div class="space-70"></div>
+          
+          <div id="step-1" *ngIf="step1">
+            <div class="row">
+              <div class="col-8 mx-auto form-group">
+                <label for="banco" class="d-block">Deseos disponibles para regalar</label>
+                <angular2-multiselect 
+                  [data]="listDeseos" 
+                  [(ngModel)]="listDeseosSelected" 
+                  [settings]="listDeseosSettings"
+                  (onSelect)="onDeseoSelect($event)">
+                </angular2-multiselect>
+                <small id="helpId" class="form-text text-muted">Estos son los deseos que puedes regalar <i class="fas fa-heart text-danger"></i></small>
+              </div>
+            </div>
 
-          <div class="row">
-            <div class="col-8 mx-auto form-group">
-              <label for="banco" class="d-block">Deseos disponibles para regalar</label>
-              <angular2-multiselect 
-                [data]="listDeseos" 
-                [(ngModel)]="listDeseosSelected" 
-                [settings]="listDeseosSettings"
-                (onSelect)="onDeseoSelect($event)">
-              </angular2-multiselect>
-              <small id="helpId" class="form-text text-muted">Estos son los deseos que puedes regalar <i class="fas fa-heart text-danger"></i></small>
+            <div class="row" *ngIf="listDeseosSelected.length > 0">
+              <div class="col-8 mx-auto form-group">
+                <span>Este deseo tiene un valor de {{ valorDeseoAsoc | currency:'CLP':'symbol-narrow':'':'es-CL'}} por
+                  unidad.</span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-8 mx-auto form-group">
+                <label for="cantidad">Cantidad que regalarás</label>
+                <input type="number" id="cantidad" class="form-control" placeholder="0" [(ngModel)]="cantidadDeseo" (input)="onInputCantidad()">
+                <small id="helpId" class="form-text text-muted">Mientras más deseos regales, mejor <i class="fas fa-gift text-success"></i></small>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-8 mx-auto form-group">
+                <label for="total">Total a regalar</label>
+                <input type="text" id="total" class="form-control" placeholder="0" [(ngModel)]="totalValor" readonly>
+                <small id="helpId" class="form-text text-muted">Este es el valor real de tus deseos a regalar</small>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-8 mx-auto text-center">
+                <p>Presiona continuar si estás de acuerdo con el monto de tu regalo.</p>
+                <button type="button" class="btn btn-primary btn-round" (click)="clickContinuar()">Continuar</button>
+              </div>
+            </div>
+
+            <div class="space-70"></div> 
+          </div> <!-- STEP 1 -->
+
+          <div id="step-2" *ngIf="step2">
+            <div class="row">
+              <div class="col-8 mx-auto">
+                <h2 class="card-title">Confirma tu regalo lleno de deseos</h2>
+                <div class="card card-plain card-blog">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h3 class="card-title">{{ evento.nombre }}</h3>
+                      <p class="card-description text-dark"><strong>
+                        Regalarás {{ cantidadDeseo }} unidades de {{ deseoAsociado.nombre }} 
+                        <br>con un valor total de {{ totalValor }}. </strong>
+                      </p>
+                      <small>Al aceptar el monto seleccionado te redigiremos a la página del medio de pago.</small>
+                    </div>
+                  </div>
+                  <div class="row"> 
+                    <div class="col-12">
+                      <button type="button" class="btn btn-primary" (click)="clickPagar()">Pagar</button>
+                      <button type="button" class="btn btn-default" (click)="clickRegresar()">Regresar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
-          <div class="row" *ngIf="listDeseosSelected.length > 0">
-            <div class="col-8 mx-auto form-group">
-              <span>Este deseo tiene un valor de { valorDeseoAsoc } por unidad.</span>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-8 mx-auto form-group">
-              <label for="cantidad">Cantidad que regalarás</label>
-              <input type="number" class="form-control" placeholder="0">
-              <small id="helpId" class="form-text text-muted">Mientras más deseos regales, mejor <i class="fas fa-gift text-success"></i></small>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-8 mx-auto form-group">
-              <label for="cantidad">Total a regalar</label>
-              <input type="number" class="form-control" placeholder="0" readonly>
-              <small id="helpId" class="form-text text-muted">Este es el valor real de tus deseos a regalar</small>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-8 mx-auto text-center">
-              <p>Presiona continuar si estás de acuerdo con el monto de tu regalo.</p>
-              <button type="button" class="btn btn-primary btn-round">Continuar</button>
-            </div>
-          </div>
-
-          <div class="space-70"></div>
-
         </div>
       </div>
     </div>
