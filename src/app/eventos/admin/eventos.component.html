@@ -36,7 +36,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let e of eventos; let i = index">
-                <td scope="row">{{e.nombre}}</td>
+                <td scope="row">{{e.titulo}}</td>
                 <td>{{ e.fechaEvento | date: 'dd/MM/yyyy' }}</td>
                 <td>
                   <button class="btn btn-danger btn-icon btn-round" (click)="editarEvento( e )">

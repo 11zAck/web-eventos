@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Evento } from '../classes/evento';
-import { Deseo } from '../classes/deseo';
-import { DeseoAsociado } from '../classes/deseo-asociado';
 import { formatCurrency } from '@angular/common';
 import { Router } from '@angular/router';
+import { Deseo } from '../classes/deseo';
 
 @Component({
   selector: 'app-evento-invitado',
@@ -20,7 +19,7 @@ export class EventoInvitadoComponent implements OnInit {
 
   // ###### PROPIEDADES DE CLASE ###### //
   evento: Evento = new Evento();
-  deseoAsociado: DeseoAsociado;
+  deseoAsociado: Deseo;
   valorDeseoAsoc: number = 0;
   cantidadDeseo: number = 0;
   totalValor: string = '0';
@@ -33,19 +32,18 @@ export class EventoInvitadoComponent implements OnInit {
   constructor(
     private router: Router
   ) {
-    this.evento.nombre = "Aniversario de prueba";
+    this.evento.titulo = "Aniversario de prueba";
     this.evento.fechaEvento = new Date();
-    this.evento.horaEvento = new Date();
     this.evento.descripcion = "Este es el 30° aniversario de mis padres";
     this.evento.direccion = "Nueva esperanza 345, Puente Alto";
     this.evento.deseos = [
-      new DeseoAsociado(1, 'Alegria', 1000, 3000 ),
-      new DeseoAsociado(2, 'Amor', 1000, 5000 ),
-      new DeseoAsociado(3, 'Bondad', 1000, 3500 ),
-      new DeseoAsociado(4, 'Gozo', 1000, 5400 ),
-      new DeseoAsociado(5, 'Humildad', 1000, 9800 ),
-      new DeseoAsociado(6, 'Paciencia', 1000, 2500 ),
-      new DeseoAsociado(7, 'Paz', 1000, 3400 )
+      new Deseo(1, 'Alegria', true, 1000 ),
+      new Deseo(2, 'Amor', true, 1000 ),
+      new Deseo(3, 'Bondad', true, 1000),
+      new Deseo(4, 'Gozo', true, 1000),
+      new Deseo(5, 'Humildad', true, 1000),
+      new Deseo(6, 'Paciencia', true, 1000),
+      new Deseo(7, 'Paz', true, 1500 )
     ];
     this.listDeseos = this.evento.listDeseosToSelect();
   }

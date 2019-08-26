@@ -1,7 +1,6 @@
 import { Banco } from '../classes/banco';
 import { Evento } from '../classes/evento';
 import { Component, OnInit } from '@angular/core';
-import { DeseoAsociado } from '../classes/deseo-asociado';
 import { CurrencyPipe } from '@angular/common';
 import { Deseo } from '../classes/deseo';
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
@@ -47,7 +46,7 @@ export class NuevoEventoComponent implements OnInit {
   // ################################# //
   public evento: Evento = new Evento();
 
-  public nuevosDeseos: DeseoAsociado[] = [];
+  public nuevosDeseos: Deseo[] = [];
 
   public nuevoInvitado: Invitado = new Invitado();
 
@@ -149,7 +148,7 @@ export class NuevoEventoComponent implements OnInit {
     if ( this.deseoSeleccionado === null || this.listDeseosSelected.length === 0 ) {
       Swal.fire('Asociar deseo', 'Debe seleccionar un deseo antes de asociarlo al evento.', 'warning');
     } else {
-      this.nuevosDeseos.push( new DeseoAsociado(this.deseoSeleccionado.id, this.deseoSeleccionado.nombre) );
+      this.nuevosDeseos.push( new Deseo(this.deseoSeleccionado.id, this.deseoSeleccionado.nombre) );
       this.listDeseos.forEach( ( v, i ) => {
         if ( v.id === this.deseoSeleccionado.id ) {
           this.listDeseos.splice( i, 1 );
@@ -173,14 +172,6 @@ export class NuevoEventoComponent implements OnInit {
     this.step2 = true;
   }
 
-  increaseCount( c: DeseoAsociado ) {
-    c.cantidad++;
-  }
-
-  decreaseCount( c: DeseoAsociado ) {
-    c.cantidad--;
-  }
-
   agregarInvitado() {
     console.log( 'Nuevo invitado: ', this.nuevoInvitado );
     this.invitados.push( this.nuevoInvitado );
@@ -188,7 +179,7 @@ export class NuevoEventoComponent implements OnInit {
   }
 
   removerInvitado( i: Invitado ) {
-    Swal.fire('Invitado', `¿Retirar invitación para ${ i.nombres }?`, 'warning').then((v) => {
+    Swal.fire('Invitado', `¿Retirar invitación para ${ i.firstname }?`, 'warning').then((v) => {
       if ( v ) {
         console.log('Invitado eliminado: ', i );
         this.invitados.forEach( (e, index) => {

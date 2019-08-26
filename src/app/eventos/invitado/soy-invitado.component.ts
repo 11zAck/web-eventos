@@ -24,7 +24,7 @@ export class SoyInvitadoComponent implements OnInit {
 
   verificar() {
     console.log( this.codigo );
-    if( this.codigo === 'ABCDEFG000' ) { this.correcto = true; }
+    if ( this.codigo === 'ABCDEFG000' ) { this.correcto = true; }
     if ( this.correcto ) {
       this.router.navigate(['/evento-invitado']);
     } else {

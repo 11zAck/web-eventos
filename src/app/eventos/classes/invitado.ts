@@ -1,35 +1,28 @@
-export class Invitado {
+import { Usuario } from '../../auth/usuario';
+export class Invitado extends Usuario {
 
-    id?: number;
-    nombres?: string;
-    apellidos?: string;
     email?: string;
-    estado?: boolean;
-    creacion?: Date;
-    modificacion?: Date;
-    creador?: number;
-    existe?: boolean;
 
     constructor(
         id?: number,
-        nombres?: string,
-        apellidos?: string,
-        email?: string,
-        estado?: boolean,
-        creacion?: Date,
-        modificacion?: Date,
-        creador?: number,
-        existe?: boolean
-    ){
-        this.id = id || 0;
-        this.nombres = nombres || '';
-        this.apellidos = apellidos || '';
+        username?: string,
+        password?: string,
+        dni?: string,
+        firstname?: string,
+        lastname?: string,
+        birthday?: Date,
+        enabled?: boolean,
+        email?: string
+    ) {
+        super(id,
+            username,
+            password,
+            dni,
+            firstname,
+            lastname,
+            birthday,
+            enabled);
         this.email = email || '';
-        this.estado = estado || true;
-        this.creacion = creacion || new Date();
-        this.modificacion = modificacion || new Date();
-        this.creador = creador || 0;
-        this.existe = existe || false;
     }
 
 }

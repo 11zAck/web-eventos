@@ -48,7 +48,7 @@
                             <div class="row">
                                 <div class="col-6 mx-auto form-group">
                                     <label for="nombre">Título del aniversario</label>
-                                    <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="helpId" placeholder="Título" [(ngModel)]="evento.nombre"  />
+                                    <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="helpId" placeholder="Título" [(ngModel)]="evento.titulo"  />
                                     <small id="helpId" class="form-text text-muted">Con este título tus invitados conocerán tu aniversario.</small>
                                 </div>
                             </div>
@@ -209,9 +209,18 @@
             <div class="row">
                 <div class="col-6 mx-auto form-group">
                     <label for="nombreInv">Nombre</label>
-                    <input type="text" class="form-control" id="nombreInv" name="nombreInv" aria-describedby="helpId" placeholder="Nombres" [(ngModel)]="nuevoInvitado.nombres" />
+                    <input type="text" class="form-control" id="nombreInv" name="nombreInv" aria-describedby="helpId" 
+                    placeholder="Nombres" [(ngModel)]="nuevoInvitado.firstname" />
                     <small id="helpId" class="form-text text-muted">Nombre de tu invitado</small>
                 </div>
+            </div>
+            <div class="row">
+              <div class="col-6 mx-auto form-group">
+                <label for="ApellidosInv">Apellidos</label>
+                <input type="text" class="form-control" id="ApellidosInv" name="ApellidosInv" aria-describedby="helpId"
+                  placeholder="Apellidos" [(ngModel)]="nuevoInvitado.lastname" />
+                <small id="helpId" class="form-text text-muted">Apellidos de tu invitado</small>
+              </div>
             </div>
             <div class="row">
                 <div class="col-6 mx-auto form-group">
@@ -237,7 +246,7 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let i of invitados">
-                                <td>{{ i.nombres }}</td>
+                                <td>{{ i.firstname }}</td>
                                 <td class="td-actions text-right">
                                     <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-round" (click)="removerInvitado( i )">
                                         <i class="now-ui-icons ui-1_simple-remove"></i>
