@@ -246,7 +246,7 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let i of invitados">
-                                <td>{{ i.firstname }}</td>
+                                <td>{{ i.firstname + ' ' + i.lastname + ' ( ' + i.email + ' ) '}}</td>
                                 <td class="td-actions text-right">
                                     <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-round" (click)="removerInvitado( i )">
                                         <i class="now-ui-icons ui-1_simple-remove"></i>
@@ -257,8 +257,10 @@
                     </table>
                 </div>
             </div>
-            <div class="row justify-content-end">
-                <button class="btn btn-primary btn-round" (click)="terminarEvento()">Finalizar</button>
+            <div class="row">
+                <div class="col-6 mx-auto">
+                    <button class="btn btn-primary btn-block btn-round" (click)="terminarEvento()">Finalizar</button>
+                </div>
             </div>
             <div class="space-70"></div>
         </div>

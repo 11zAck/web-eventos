@@ -17,7 +17,7 @@ export class EventosComponent implements OnInit {
 
   ngOnInit() {
     const e: Evento = new Evento();
-    e.nombre = 'Aniversario';
+    e.titulo = 'Aniversario';
     e.fechaEvento = new Date('2019-10-30');
     this.eventos.push( e );
   }

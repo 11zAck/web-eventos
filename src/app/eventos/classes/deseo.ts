@@ -11,7 +11,7 @@ export class Deseo {
         this.nombre = nombre || '';
         this.descripcion = '';
         this.activo = activo || true;
-        this.valor = valor || 0;
+        this.valor = valor;
     }
 
 }

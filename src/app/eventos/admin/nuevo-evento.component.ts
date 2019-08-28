@@ -51,9 +51,9 @@ export class NuevoEventoComponent implements OnInit {
   public nuevoInvitado: Invitado = new Invitado();
 
   public invitados: Invitado[] = [
-    new Invitado(1, 'Isaac', 'Méndez', 'isaac@gmail.com'),
-    new Invitado(2, 'René', 'Gonzalez', 'rene@gmail.com'),
-    new Invitado(3, 'Hugo', 'Hernandez', 'hugo@gmail.com')
+    new Invitado(null, '', '', '', 'Isaac', 'Méndez', null, null, 'isaac@gmail.com'),
+    new Invitado(null, '', '', '', 'René', 'Gonzalez', null, null, 'rene@gmail.com'),
+    new Invitado(null, '', '', '', 'Hugo', 'Hernandez', null, null, 'hugo@gmail.com')
   ];
 
   public newEmail: string;
@@ -140,7 +140,7 @@ export class NuevoEventoComponent implements OnInit {
     this.evento.tipoCuenta = newTC;
   }
 
-  onDeseoSelec( deseo ) {
+  onDeseoSelec( deseo: any ) {
     this.deseoSeleccionado = new Deseo(deseo.id, deseo.itemName);
   }
 
@@ -148,7 +148,7 @@ export class NuevoEventoComponent implements OnInit {
     if ( this.deseoSeleccionado === null || this.listDeseosSelected.length === 0 ) {
       Swal.fire('Asociar deseo', 'Debe seleccionar un deseo antes de asociarlo al evento.', 'warning');
     } else {
-      this.nuevosDeseos.push( new Deseo(this.deseoSeleccionado.id, this.deseoSeleccionado.nombre) );
+      this.nuevosDeseos.push( new Deseo(this.deseoSeleccionado.id, this.deseoSeleccionado.nombre, true) );
       this.listDeseos.forEach( ( v, i ) => {
         if ( v.id === this.deseoSeleccionado.id ) {
           this.listDeseos.splice( i, 1 );
@@ -165,8 +165,9 @@ export class NuevoEventoComponent implements OnInit {
   }
 
   nextPage() {
-    console.log( this.timepick );
-    console.log( this.datepick );
+    const timestr = this.timepick.hour + ':' + this.timepick.minute;
+    const datestr = this.datepick.year + '-' + this.datepick.month + '-' + this.datepick.day;
+    this.evento.fechaEvento = new Date( datestr + ' ' + timestr );
     console.log( this.evento );
     this.step1 = false;
     this.step2 = true;
@@ -198,35 +199,18 @@ export class NuevoEventoComponent implements OnInit {
     });
   }
 
-  eliminarFilaDeseo( d ) {
-    console.log('d: ', d);
+  eliminarFilaDeseo( d: Deseo ) {
     Swal.fire('Eliminar deseo', '¿Desea eliminar realmente este deseo?', 'warning').then(( rsp ) => {
       if ( rsp ) {
-        console.log("eliminar");
+        let delDeseo = [];
+        this.nuevosDeseos.forEach((e, index) => {
+          if (e === d) {
+            delDeseo = this.nuevosDeseos.splice(index, 1);
+          }
+        });
+        this.listDeseos.push({ id: delDeseo[0].id, itemName: delDeseo[0].nombre });
+        this.listDeseos = this.listDeseos.sort( (a, b) => a.id - b.id );
       }
-    })
+    });
   }
 }
-// console.log( this.currencyPipe.transform( amount, 'CLP', '$ ', '', 'es-CL') );
-
-/*
-public bancos: Array<Banco> = [
-  new Banco(  1, 'BANCO DE CHILE', true ),
-  new Banco(  2, 'BANCO INTERNACIONAL', true ),
-  new Banco(  3, 'SCOTIABANK CHILE', true ),
-  new Banco(  4, 'BANCO DE CREDITO E INVERSIONES', true ),
-  new Banco(  5, 'BANCO BICE', true ),
-  new Banco(  6, 'HSBC BANK (CHILE)', true ),
-  new Banco(  7, 'BANCO SANTANDER-CHILE', true ),
-  new Banco(  8, 'ITAÚ CORPBANCA', true ),
-  new Banco(  9, 'BANCO SECURITY', true ),
-  new Banco( 10, 'BANCO FALABELLA', true ),
-  new Banco( 11, 'BANCO RIPLEY', true ),
-  new Banco( 12, 'RABOBANK CHILE', true ),
-  new Banco( 13, 'BANCO CONSORCIO', true ),
-  new Banco( 14, 'BANCO PENTA', true ),
-  new Banco( 15, 'BANCO BILBAO VIZCAYA ARGENTARIA, CHILE (BBVA)', true ),
-  new Banco( 16, 'BANCO BTG PACTUAL CHILE', true ),
-  new Banco( 17, 'BANCO DEL ESTADO DE CHILE', true )
-];
-*/

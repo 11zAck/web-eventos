@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Evento } from '../classes/evento';
 import { Observable } from 'rxjs';
-import { ServicioEventosService } from '../../service/servicio-eventos.service';
+import { ServicioEventosService } from '../service/servicio-eventos.service';
 
 @Component({
   selector: 'app-editar-evento',
