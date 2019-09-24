@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'nuevo', component: NuevoEventoComponent},
-  { path: 'editar-evento', component: EditarEventoComponent},
+  { path: 'editar-evento/:id', component: EditarEventoComponent},
   { path: 'soy-invitado', component: SoyInvitadoComponent},
   { path: 'evento-invitado', component: EventoInvitadoComponent },
   { path: 'eventos', component: EventosComponent },

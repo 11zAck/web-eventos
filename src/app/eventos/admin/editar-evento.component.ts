@@ -12,7 +12,7 @@ import { ServicioEventosService } from '../service/servicio-eventos.service';
 export class EditarEventoComponent implements OnInit {
 
   evento$: Observable<Evento>;
-  idEvento: number;
+  evento: Evento;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -20,14 +20,10 @@ export class EditarEventoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    /*
-    this.evento$ = this.activatedRoute.paramMap.subscribe(
-      ( params: ParamMap ) => {
-        this.idEvento = +params.get('id');
-        return 
-      })
-    );
-    */
+    this.activatedRoute.paramMap.subscribe( params => {
+      const id: number = +params.get('id');
+    })
+    console.log( this.evento );
   }
 
 }

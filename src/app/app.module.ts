@@ -25,6 +25,7 @@ import { SharedModule } from './shared/shared.module';
 import { SoyInvitadoComponent } from './eventos/invitado/soy-invitado.component';
 import { EventoInvitadoComponent } from './eventos/invitado/evento-invitado.component';
 import { EventosComponent } from './eventos/admin/eventos.component';
+import { ServicioEventosService } from './eventos/service/servicio-eventos.service';
 
 registerLocaleData(localeCL);
 
@@ -57,6 +58,7 @@ registerLocaleData(localeCL);
   ],
   providers: [
     CurrencyPipe,
+    ServicioEventosService,
     {provide: LOCALE_ID, useValue: 'es-CL'}
   ],
   bootstrap: [AppComponent]

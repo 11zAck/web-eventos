@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { Evento } from '../classes/evento';
+import { ServicioEventosService } from '../service/servicio-eventos.service';
 
 @Component({
   selector: 'app-eventos',
@@ -9,11 +10,14 @@ import { Evento } from '../classes/evento';
 })
 export class EventosComponent implements OnInit {
 
-  public eventos: Evento[] = [];
+  public eventos: Evento[];
 
   constructor(
+    private eventoService: ServicioEventosService,
     private router: Router
-  ) { }
+  ) {
+    this.eventos = this.eventoService.getEventos();
+  }
 
   ngOnInit() {
     const e: Evento = new Evento();
@@ -23,7 +27,7 @@ export class EventosComponent implements OnInit {
   }
 
   editarEvento( e: Evento ) {
-    console.log('Evento: ', e);
+    console.log('Editar evento [' + e.id + ']');
     this.router.navigate(['/editar-evento', { id: e.id } ]);
   }
 
