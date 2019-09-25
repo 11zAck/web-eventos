@@ -28,7 +28,7 @@ export class EventosComponent implements OnInit {
 
   editarEvento( e: Evento ) {
     console.log('Editar evento [' + e.id + ']');
-    this.router.navigate(['/editar-evento', { id: e.id } ]);
+    this.router.navigate(['/editar-evento/' + e.id ]);
   }
 
 }

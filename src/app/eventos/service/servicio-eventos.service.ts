@@ -18,4 +18,8 @@ export class ServicioEventosService {
 
   getDeseosDisponibles(): Listado[] { return DESEOS; }
 
+  getEventoById(id: number): any {
+    return;
+  }
+
 }

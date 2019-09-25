@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Params } from '@angular/router';
 import { Evento } from '../classes/evento';
 import { Observable } from 'rxjs';
 import { ServicioEventosService } from '../service/servicio-eventos.service';
@@ -20,10 +20,12 @@ export class EditarEventoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.activatedRoute.paramMap.subscribe( params => {
-      const id: number = +params.get('id');
-    })
-    console.log( this.evento );
+    this.activatedRoute.params.forEach((params: Params) => {
+      const id: number = params.id;
+      console.log('Evento id: ' + id );
+
+      this.servicioEvento.getEventoById(id).subscribe();
+    });
   }
 
 }
