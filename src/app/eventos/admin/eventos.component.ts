@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { Evento } from '../classes/evento';
-import { ServicioEventosService } from '../service/servicio-eventos.service';
+import { EventosService } from '../service/eventos.service';
 
 @Component({
   selector: 'app-eventos',
@@ -13,10 +13,14 @@ export class EventosComponent implements OnInit {
   public eventos: Evento[];
 
   constructor(
-    private eventoService: ServicioEventosService,
+    private eventosService: EventosService,
     private router: Router
   ) {
-    this.eventos = this.eventoService.getEventos();
+    this.eventosService.getEventos().subscribe(
+      (eventos) => {
+        this.eventos = eventos;
+      }
+    );
   }
 
   ngOnInit() {

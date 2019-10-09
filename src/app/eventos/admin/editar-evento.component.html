@@ -6,12 +6,115 @@
     <div class="content-center">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
-          <h1 class="title">Mis eventos</h1>
-          <h4>Modifica tus eventos</h4>
+          <h1 class="title">Eventos</h1>
+          <h4>{{ evento.titulo }}</h4>
         </div>
       </div>
     </div>
   </div>
 
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-6 mx-auto mb-4">
+          Por el momento sólo puedes revisar la información de tu evento.
+          <br>Para modificar su información debes contactarnos.
+        </div>
+      </div>
+      <div class="row">
+        <div class="col d-flex justify-content-center">
+          <ul class="nav nav-pills nav-pills-primary nav-pills-icons" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#aform" role="tablist">
+                <i class="fas fa-cocktail"></i>
+                Aniversario
+              </a>
+            </li>
+            <!--
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#cform" role="tablist">
+                <i class="fas fa-gift"></i>
+                Cumpleaños
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#mform" role="tablist">
+                <i class="fas fa-ring"></i>
+                Matrimonio
+              </a>
+            </li>
+          -->
+          </ul>
+        </div>
+      </div>
+
+      <!-- SECTION -->
+      <div class="row mt-4">
+        <div class="col">
+          <div class="tab-content tab-space">
+            <div class="tab-pane active" id="aform">
+
+              <div class="row">
+                <div class="col-6 mx-auto form-group">
+                  <label for="nombre">Título del aniversario</label>
+                  <input type="text" class="form-control-plaintext font-weight-bold ml-3" id="nombre" name="nombre" aria-describedby="helpId"
+                    placeholder="Título" [value]="evento.titulo" />
+                  <small id="helpId" class="form-text text-muted">Con este título tus invitados conocerán tu
+                    aniversario.</small>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6 mx-auto form-group">
+                  <label for="fecha">Fecha y hora del aniversario</label>
+                  <input type="text" class="form-control-plaintext font-weight-bold ml-3" id="nombre" name="nombre" aria-describedby="helpId"
+                    placeholder="Título" [value]="evento.fechaEvento | date:'d \'de\' MMMM \'de\' y \'a las\' H:mm'" />
+                  <small id="helpId" class="form-text text-muted">Fecha de la celebración de tu aniversario.</small>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6 mx-auto form-group">
+                  <label for="lugar">Lugar del aniversario</label>
+                  <input type="text" class="form-control-plaintext font-weight-bold ml-3" name="lugar" id="lugar" aria-describedby="helpId"
+                    placeholder="Dirección" [value]="evento.direccion" />
+                  <small id="helpId" class="form-text text-muted">Dirección en que se celebrará tu aniversario.</small>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6 mx-auto form-group">
+                  <label for="lugar">Banco</label>
+                  <input type="text" class="form-control-plaintext font-weight-bold ml-3" name="lugar" id="lugar"
+                    aria-describedby="helpId" placeholder="Dirección" [value]="evento.banco.nombre" />
+                  <small id="helpId" class="form-text text-muted">Banco al que se transferirán los regalos de tus invitados.</small>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6 mx-auto form-group">
+                  <label for="lugar">Tipo de cuenta</label>
+                  <input type="text" class="form-control-plaintext font-weight-bold ml-3" name="lugar" id="lugar"
+                    aria-describedby="helpId" placeholder="Dirección" [value]="evento.tipoCuenta" />
+                  <small id="helpId" class="form-text text-muted">Tipo de cuenta, de la entidad financiera.</small>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6 mx-auto form-group">
+                  <label for="lugar">Número de la cuenta</label>
+                  <input type="text" class="form-control-plaintext font-weight-bold ml-3" name="lugar" id="lugar"
+                    aria-describedby="helpId" placeholder="Dirección" [value]="evento.numeroCuenta" />
+                  <small id="helpId" class="form-text text-muted">Número de la cuenta.</small>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
 </div>

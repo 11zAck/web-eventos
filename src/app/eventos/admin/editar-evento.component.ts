@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Params } from '@angular/router';
 import { Evento } from '../classes/evento';
 import { Observable } from 'rxjs';
-import { ServicioEventosService } from '../service/servicio-eventos.service';
+import { EventosService } from '../service/eventos.service';
 
 @Component({
   selector: 'app-editar-evento',
@@ -16,7 +16,7 @@ export class EditarEventoComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private servicioEvento: ServicioEventosService
+    private eventosService: EventosService
   ) { }
 
   ngOnInit() {
@@ -24,7 +24,9 @@ export class EditarEventoComponent implements OnInit {
       const id: number = params.id;
       console.log('Evento id: ' + id );
 
-      this.servicioEvento.getEventoById(id).subscribe();
+      this.eventosService.getEventoById(id).subscribe((evento) => {
+        this.evento = evento;
+      });
     });
   }
 
