@@ -3,6 +3,8 @@ import { ActivatedRoute, ParamMap, Params } from '@angular/router';
 import { Evento } from '../classes/evento';
 import { Observable } from 'rxjs';
 import { EventosService } from '../service/eventos.service';
+import { Invitado } from '../classes/invitado';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editar-evento',
@@ -13,6 +15,7 @@ export class EditarEventoComponent implements OnInit {
 
   evento$: Observable<Evento>;
   evento: Evento;
+  nuevoInvitado: Invitado = new Invitado();
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -29,5 +32,26 @@ export class EditarEventoComponent implements OnInit {
       });
     });
   }
+
+  removerInvitado(i: Invitado) {
+    Swal.fire('Invitado', `¿Retirar invitación para ${i.firstname}?`, 'warning').then((v) => {
+      if (v) {
+        console.log('Invitado eliminado: ', i);
+        this.evento.invitados.forEach((e, index) => {
+          if (e === i) {
+            this.evento.invitados.splice(index, 1);
+          }
+        });
+      }
+    });
+  }
+
+  agregarInvitado() {
+    console.log('Nuevo invitado: ', this.nuevoInvitado);
+    this.evento.invitados.push(this.nuevoInvitado);
+    this.nuevoInvitado = new Invitado();
+  }
+
+
 
 }

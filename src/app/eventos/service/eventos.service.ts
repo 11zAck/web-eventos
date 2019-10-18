@@ -9,6 +9,8 @@ import { Listado } from '../classes/listado';
 })
 export class EventosService {
 
+  private eventos: Evento[];
+
   constructor() { }
 
   getEventos(): Observable<Evento[]> { return of(EVENTOS); }
@@ -31,5 +33,7 @@ export class EventosService {
   getListadoTipoCuenta(): Observable<Listado[]> { return of(TIPO_CUENTA); }
 
   getDeseosDisponibles(): Observable<Listado[]> { return of(DESEOS); }
+
+  addEvento( e: Evento ): Observable<Evento> { return of( e ); }
 
 }

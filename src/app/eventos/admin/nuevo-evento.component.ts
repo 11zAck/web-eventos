@@ -1,12 +1,13 @@
 import { Banco } from '../classes/banco';
 import { Evento } from '../classes/evento';
 import { Component, OnInit } from '@angular/core';
-import { CurrencyPipe } from '@angular/common';
 import { Deseo } from '../classes/deseo';
-import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { Invitado } from '../classes/invitado';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { EventosService } from '../service/eventos.service';
+import { Listado } from '../classes/listado';
 
 @Component({
   selector: 'app-nuevo-evento',
@@ -45,89 +46,70 @@ export class NuevoEventoComponent implements OnInit {
 
   // ################################# //
   public evento: Evento = new Evento();
-
   public nuevosDeseos: Deseo[] = [];
-
   public nuevoInvitado: Invitado = new Invitado();
-
-  public invitados: Invitado[] = [
-    new Invitado(null, '', '', '', 'Isaac', 'Méndez', null, null, 'isaac@gmail.com'),
-    new Invitado(null, '', '', '', 'René', 'Gonzalez', null, null, 'rene@gmail.com'),
-    new Invitado(null, '', '', '', 'Hugo', 'Hernandez', null, null, 'hugo@gmail.com')
-  ];
-
+  public invitados: Invitado[] = [];
   public newEmail: string;
-
   public deseoSeleccionado: Deseo;
 
-  constructor( 
-    private currencyPipe: CurrencyPipe,
+  constructor(
     private calendar: NgbCalendar,
-    private router: Router
+    private router: Router,
+    private eventoService: EventosService
   ) { }
 
   ngOnInit() {
     this.step1 = true;
     this.step2 = false;
+
     // ##### INICIALIZAR LOS SELECTS
-    this.listBancos = [
-      { id: 1, itemName: 'BANCO DE CHILE' },
-      { id: 2, itemName: 'BANCO INTERNACIONAL' },
-      { id: 3, itemName: 'SCOTIABANK CHILE' },
-      { id: 4, itemName: 'BANCO DE CREDITO E INVERSIONES' },
-      { id: 5, itemName: 'BANCO BICE' },
-      { id: 6, itemName: 'HSBC BANK (CHILE)' },
-      { id: 7, itemName: 'BANCO SANTANDER-CHILE' },
-      { id: 8, itemName: 'ITAÚ CORPBANCA' },
-      { id: 9, itemName: 'BANCO SECURITY' },
-      { id: 10, itemName: 'BANCO FALABELLA' },
-      { id: 11, itemName: 'BANCO RIPLEY' },
-      { id: 12, itemName: 'RABOBANK CHILE' },
-      { id: 13, itemName: 'BANCO CONSORCIO' },
-      { id: 14, itemName: 'BANCO PENTA' },
-      { id: 15, itemName: 'BANCO BILBAO VIZCAYA ARGENTARIA, CHILE (BBVA)' },
-      { id: 16, itemName: 'BANCO BTG PACTUAL CHILE' },
-      { id: 17, itemName: 'BANCO DEL ESTADO DE CHILE' }
-    ];
+    this.eventoService.getListadoBancos().subscribe( (data: Listado[]) => {
+      this.listBancos = data;
+    }, ( error ) => {
+      // tslint:disable-next-line: no-console
+      console.debug('No logramos obtener el listado de bancos disponibles.');
+      this.listBancos = [];
+    }, () => {
+      this.listBancosSettings = {
+        singleSelection: true,
+        text: 'Seleccione Banco',
+        enableSearchFilter: false,
+        showCheckbox: false
+      };
+    });
 
-    this.listBancosSettings = {
-      singleSelection: true,
-      text: 'Seleccione Banco',
-      enableSearchFilter: false,
-      showCheckbox: false
-    };
+    this.eventoService.getDeseosDisponibles().subscribe( (data: Listado[]) => {
+      this.listDeseos = data;
+    }, (error) => {
+      // tslint:disable-next-line: no-console
+      console.debug('No pudimos obtener el listado de deseos disponibles.');
+      this.listDeseos = [];
+    }, () => {
+      this.listDeseosSettings = {
+        singleSelection: true,
+        text: 'Seleccione Deseo',
+        enableSearchFilter: false,
+        showCheckbox: false
+      };
+    });
 
-    this.listDeseos = [
-      { id: 1, itemName: 'Alegría' },
-      { id: 2, itemName: 'Amor' },
-      { id: 3, itemName: 'Bondad' },
-      { id: 4, itemName: 'Gozo' },
-      { id: 5, itemName: 'Humildad' },
-      { id: 6, itemName: 'Paciencia' },
-      { id: 7, itemName: 'Paz'  }
-    ];
-
-    this.listDeseosSettings = {
-      singleSelection: true,
-      text: 'Seleccione Deseo',
-      enableSearchFilter: false,
-      showCheckbox: false
-    };
-
-    this.listTipoCuenta = [
-      { id: 'CC', itemName: 'Cuenta Corriente' },
-      { id: 'CV', itemName: 'Cuenta Vista' },
-      { id: 'CR', itemName: 'Cuenta RUT' }
-    ];
-
-    this.listTipoCuentaSettings = {
-      singleSelection: true,
-      text: 'Seleccione Tipo de Cuenta',
-      enableSearchFilter: false,
-      showCheckbox: false
-    };
+    this.eventoService.getListadoTipoCuenta().subscribe( (data: Listado[]) => {
+      this.listTipoCuenta = data;
+    }, ( error ) => {
+      // tslint:disable-next-line: no-console
+      console.debug('No logramos obtener los tipos de cuenta.');
+      this.listTipoCuenta = [];
+    }, () => {
+      this.listTipoCuentaSettings = {
+        singleSelection: true,
+        text: 'Seleccione Tipo de Cuenta',
+        enableSearchFilter: false,
+        showCheckbox: false
+      };
+    });
 
     this.datepick = this.calendar.getToday();
+
   }
 
   onBancoSelect( banco: any ) {
@@ -168,7 +150,7 @@ export class NuevoEventoComponent implements OnInit {
     const timestr = this.timepick.hour + ':' + this.timepick.minute;
     const datestr = this.datepick.year + '-' + this.datepick.month + '-' + this.datepick.day;
     this.evento.fechaEvento = new Date( datestr + ' ' + timestr );
-    console.log( this.evento );
+    console.log( 'Siguiente página, se agrega evento: ', this.evento );
     this.step1 = false;
     this.step2 = true;
   }

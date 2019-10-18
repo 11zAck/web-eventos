@@ -91,4 +91,6 @@ export const EVENTOS: any[] = [
             { id: 2, nombre: 'Gozo', activo: true, valor: 150000 }
         ]
     }
-]
+];
+
+
