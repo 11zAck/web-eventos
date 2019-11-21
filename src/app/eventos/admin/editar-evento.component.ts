@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { EventosService } from '../service/eventos.service';
 import { Invitado } from '../classes/invitado';
 import Swal from 'sweetalert2';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-editar-evento',
@@ -19,7 +20,8 @@ export class EditarEventoComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private eventosService: EventosService
+    private eventosService: EventosService,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -52,6 +54,8 @@ export class EditarEventoComponent implements OnInit {
     this.nuevoInvitado = new Invitado();
   }
 
-
+  regresar() {
+    this.location.back();
+  }
 
 }

@@ -146,13 +146,43 @@ export class NuevoEventoComponent implements OnInit {
     this.datepick = newDate;
   }
 
-  nextPage() {
-    const timestr = this.timepick.hour + ':' + this.timepick.minute;
-    const datestr = this.datepick.year + '-' + this.datepick.month + '-' + this.datepick.day;
-    this.evento.fechaEvento = new Date( datestr + ' ' + timestr );
-    console.log( 'Siguiente página, se agrega evento: ', this.evento );
-    this.step1 = false;
-    this.step2 = true;
+  async nextPage() {
+    if ( this.formularioIncompleto() ) {
+      await Swal.fire(
+        'Evento incompleto',
+        'Existen campos sin completar',
+        'warning');
+    } else {
+      const timestr = this.timepick.hour + ':' + this.timepick.minute;
+      const datestr = this.datepick.year + '-' + this.datepick.month + '-' + this.datepick.day;
+      this.evento.fechaEvento = new Date( datestr + ' ' + timestr );
+      this.evento.deseos = this.nuevosDeseos;
+
+      this.eventoService.addEvento( this.evento ).subscribe( (data: Evento) => {
+        // tslint:disable-next-line: no-console
+        console.debug('Evento guardado: ', data);
+      }, (error) => {
+        // tslint:disable-next-line: no-console
+        console.debug('Error guardar evento');
+      }, () => {
+        console.log( 'Siguiente página, se agrega evento: ', this.evento );
+        this.step1 = false;
+        this.step2 = true;
+      });
+    }
+
+  }
+
+  private formularioIncompleto(): boolean {
+    if ( this.evento.titulo == null || this.evento.titulo.length === 0 ) { return true; }
+    if ( this.evento.direccion == null || this.evento.direccion.length === 0 ) { return true; }
+    if ( this.evento.banco == null ) { return true; }
+    if ( this.evento.numeroCuenta == null || this.evento.numeroCuenta.length === 0 ) { return true; }
+    if ( this.evento.tipoCuenta == null || this.evento.tipoCuenta.length === 0 ) { return true; }
+    if ( this.evento.emailCuenta == null || this.evento.emailCuenta.length === 0 ) { return true; }
+    if ( this.evento.telefono == null || this.evento.telefono.length === 0 ) { return true; }
+    if ( this.nuevosDeseos == null || this.nuevosDeseos.length === 0 ) { return true; }
+    return false;
   }
 
   agregarInvitado() {

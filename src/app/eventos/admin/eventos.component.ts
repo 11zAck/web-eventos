@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { Evento } from '../classes/evento';
 import { EventosService } from '../service/eventos.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-eventos',
@@ -14,7 +15,8 @@ export class EventosComponent implements OnInit {
 
   constructor(
     private eventosService: EventosService,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {
     this.eventosService.getEventos().subscribe(
       (eventos) => {
@@ -25,9 +27,6 @@ export class EventosComponent implements OnInit {
 
   ngOnInit() {
     const e: Evento = new Evento();
-    e.titulo = 'Aniversario';
-    e.fechaEvento = new Date('2019-10-30');
-    this.eventos.push( e );
   }
 
   editarEvento( e: Evento ) {
