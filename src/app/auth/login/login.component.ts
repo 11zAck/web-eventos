@@ -11,6 +11,8 @@ import { Usuario } from '../usuario';
 export class LoginComponent implements OnInit, OnDestroy {
 
   formulario;
+  public focus = false;
+  public focus1 = false;
   private usuario: Usuario = new Usuario();
 
   constructor( private fbuild: FormBuilder ) {

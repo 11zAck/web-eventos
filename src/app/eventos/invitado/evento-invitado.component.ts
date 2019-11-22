@@ -26,6 +26,8 @@ export class EventoInvitadoComponent implements OnInit {
 
   step1: boolean = true;
   step2: boolean = false;
+  public nombre: string = '';
+  public horaEvento: any;
   /**
    * Constructor
    */
