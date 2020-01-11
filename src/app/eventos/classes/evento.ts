@@ -3,29 +3,49 @@ import { Invitado } from './invitado';
 import { Deseo } from './deseo';
 import { Organizador } from './organizador';
 
-export class Evento {
+export interface IEvento {
 
-    id?: number;
-    titulo?: string;
-    descripcion?: string;
-    direccion?: string;
-    activo?: boolean;
-    reportado?: boolean;
-    banco?: Banco;
-    tipoCuenta?: string;
-    numeroCuenta?: string;
-    rutCuenta?: string;
-    emailCuenta?: string;
-    telefono?: string;
-    fechaEvento?: Date;
-    creacion?: Date;
-    edicion?: Date;
+    id: number;
+    titulo: string;
+    descripcion: string;
+    direccion: string;
+    activo: boolean;
+    reportado: boolean;
+    banco: Banco;
+    tipoCuenta: string;
+    numeroCuenta: string;
+    rutCuenta: string;
+    emailCuenta: string;
+    telefono: string;
+    fechaEvento: Date;
+    creacion: Date;
+    edicion: Date;
+    propietario: Organizador;
+    invitados: Array<Invitado>;
+    deseos: Array<Deseo>;
 
-    propietario?: Organizador;
+}
 
-    invitados?: Array<Invitado>;
+export class Evento implements IEvento {
 
-    deseos?: Array<Deseo>;
+    id: number;
+    titulo: string;
+    descripcion: string;
+    direccion: string;
+    activo: boolean;
+    reportado: boolean;
+    banco: Banco;
+    tipoCuenta: string;
+    numeroCuenta: string;
+    rutCuenta: string;
+    emailCuenta: string;
+    telefono: string;
+    fechaEvento: Date;
+    creacion: Date;
+    edicion: Date;
+    propietario: Organizador;
+    invitados: Array<Invitado>;
+    deseos: Array<Deseo>;
 
     listDeseosToSelect(): any {
         console.log('largo: ' + this.deseos.length );

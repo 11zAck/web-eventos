@@ -1,4 +1,9 @@
-export class Banco {
+export interface IBanco {
+    id: number;
+    nombre: string;
+    activo: boolean;
+}
+export class Banco implements IBanco {
 
     id: number;
     nombre: string;
