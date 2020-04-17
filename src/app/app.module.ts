@@ -26,6 +26,7 @@ import { SoyInvitadoComponent } from './eventos/invitado/soy-invitado.component'
 import { EventoInvitadoComponent } from './eventos/invitado/evento-invitado.component';
 import { EventosComponent } from './eventos/admin/eventos.component';
 import { EventosService } from './eventos/service/eventos.service';
+import { TransbankService } from './eventos/service/transbank.service';
 
 registerLocaleData(localeCL);
 
@@ -59,9 +60,10 @@ registerLocaleData(localeCL);
   providers: [
     CurrencyPipe,
     EventosService,
+    TransbankService,
     {provide: LOCALE_ID, useValue: 'es-CL'}
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
+export class AppModule {
 }

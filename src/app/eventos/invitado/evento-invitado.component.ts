@@ -3,6 +3,8 @@ import { Evento } from '../classes/evento';
 import { formatCurrency } from '@angular/common';
 import { Router } from '@angular/router';
 import { Deseo } from '../classes/deseo';
+import { TransbankService } from '../service/transbank.service';
+import { RequestPayment } from '../classes/tbk/request-objtects';
 
 @Component({
   selector: 'app-evento-invitado',
@@ -32,7 +34,7 @@ export class EventoInvitadoComponent implements OnInit {
    * Constructor
    */
   constructor(
-    private router: Router
+    private router: Router, private tbkService: TransbankService
   ) {
     this.evento.titulo = "Aniversario de prueba";
     this.evento.fechaEvento = new Date();
@@ -88,7 +90,10 @@ export class EventoInvitadoComponent implements OnInit {
   }
 
   clickPagar() {
-    console.log('Pagar');
+    const req = new RequestPayment( this.totalValor, '123456', '00021345');
+    this.tbkService.requestPayment( req ).subscribe(( result ) => {
+      console.log(result);
+    });
   }
 
 }

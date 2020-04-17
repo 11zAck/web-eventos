@@ -6,5 +6,5 @@ export class TipoEvento {
     descripcion?: string;
     activo?: boolean;
     eventos?: Array<Evento>;
-    
+
 }
