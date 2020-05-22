@@ -6,6 +6,7 @@ import { Organizador } from './organizador';
 export interface IEvento {
 
     id: number;
+    tipoEvento: number;
     titulo: string;
     descripcion: string;
     direccion: string;
@@ -29,6 +30,7 @@ export interface IEvento {
 export class Evento implements IEvento {
 
     id: number;
+    tipoEvento: number;
     titulo: string;
     descripcion: string;
     direccion: string;

@@ -34,6 +34,22 @@ export class NuevoEventoComponent implements OnInit {
   listTipoCuentaSelected = [];
   listTipoCuentaSettings = {};
 
+  // ###### DROPDOWN TIPO EVENTO ##### //
+  listEventType = [
+    { id: 1, itemName: 'Aniversario' },
+    { id: 2, itemName: 'BabyShower' },
+    { id: 3, itemName: 'Cumpleaños' },
+    { id: 4, itemName: 'Bautizo' },
+  ];
+  listSelectedEventType = [];
+  listSettingsEventType =
+    {
+      singleSelection: true,
+      text: 'Selecciona el tipo de evento',
+      enableSearchFilter: false,
+      showCheckbox: false
+    };
+
   // ################################# //
 
   public datepick: any;
@@ -46,11 +62,10 @@ export class NuevoEventoComponent implements OnInit {
 
   // ################################# //
   public evento: Evento = new Evento();
-  public nuevosDeseos: Deseo[] = [];
   public nuevoInvitado: Invitado = new Invitado();
   public invitados: Invitado[] = [];
   public newEmail: string;
-  public deseoSeleccionado: Deseo;
+  
 
   constructor(
     private calendar: NgbCalendar,
@@ -64,7 +79,7 @@ export class NuevoEventoComponent implements OnInit {
 
     // ##### INICIALIZAR LOS SELECTS
     this.eventoService.getListadoBancos().subscribe( (data: Listado[]) => {
-      this.listBancos = data;
+      this.listBancos = JSON.parse(JSON.stringify(data));
     }, ( error ) => {
       // tslint:disable-next-line: no-console
       console.debug('No logramos obtener el listado de bancos disponibles.');
@@ -79,22 +94,22 @@ export class NuevoEventoComponent implements OnInit {
     });
 
     this.eventoService.getDeseosDisponibles().subscribe( (data: Listado[]) => {
-      this.listDeseos = data;
+      this.listDeseos = JSON.parse(JSON.stringify(data));
     }, (error) => {
       // tslint:disable-next-line: no-console
       console.debug('No pudimos obtener el listado de deseos disponibles.');
       this.listDeseos = [];
     }, () => {
+      this.listDeseosSelected = JSON.parse( JSON.stringify(this.listDeseos) );
       this.listDeseosSettings = {
-        singleSelection: true,
         text: 'Seleccione Deseo',
-        enableSearchFilter: false,
-        showCheckbox: false
+        selectAllText: 'Seleccionar todos',
+        unSelectAllText: 'Deseleccionar todos'
       };
     });
 
     this.eventoService.getListadoTipoCuenta().subscribe( (data: Listado[]) => {
-      this.listTipoCuenta = data;
+      this.listTipoCuenta = JSON.parse(JSON.stringify(data));
     }, ( error ) => {
       // tslint:disable-next-line: no-console
       console.debug('No logramos obtener los tipos de cuenta.');
@@ -112,6 +127,11 @@ export class NuevoEventoComponent implements OnInit {
 
   }
 
+  onSelectEventType( tipoEvento: any ) {
+    console.log( tipoEvento );
+    this.evento.tipoEvento = tipoEvento.id;
+  }
+
   onBancoSelect( banco: any ) {
     console.log( banco );
     this.evento.banco = new Banco( banco.id, banco.itemName, true );
@@ -123,22 +143,23 @@ export class NuevoEventoComponent implements OnInit {
   }
 
   onDeseoSelec( deseo: any ) {
-    this.deseoSeleccionado = new Deseo(deseo.id, deseo.itemName);
+    console.log( deseo );
   }
 
-  onClickAddDeseo() {
-    if ( this.deseoSeleccionado === null || this.listDeseosSelected.length === 0 ) {
-      Swal.fire('Asociar deseo', 'Debe seleccionar un deseo antes de asociarlo al evento.', 'warning');
-    } else {
-      this.nuevosDeseos.push( new Deseo(this.deseoSeleccionado.id, this.deseoSeleccionado.nombre, true) );
-      this.listDeseos.forEach( ( v, i ) => {
-        if ( v.id === this.deseoSeleccionado.id ) {
-          this.listDeseos.splice( i, 1 );
-        }
-      });
-      this.deseoSeleccionado = null;
-      this.listDeseosSelected = [];
+  async onClickAddDeseo() {
+    const { value: deseo } = await Swal.fire({
+      title: 'Tu nuevo deseo',
+      input: 'text',
+      inputPlaceholder: 'Ingresa el nombre de tu deseo'
+    });
+
+    if ( deseo ) {
+      const cantidadDeseos = this.listDeseos.length;
+      const nuevoDeseo = { id: cantidadDeseos + 1, itemName: deseo };
+      this.listDeseos.push( nuevoDeseo );
+      this.listDeseosSelected.push( JSON.parse(JSON.stringify( nuevoDeseo )));
     }
+
   }
 
   onDateSelected( newDate: any ) {
@@ -156,7 +177,7 @@ export class NuevoEventoComponent implements OnInit {
       const timestr = this.timepick.hour + ':' + this.timepick.minute;
       const datestr = this.datepick.year + '-' + this.datepick.month + '-' + this.datepick.day;
       this.evento.fechaEvento = new Date( datestr + ' ' + timestr );
-      this.evento.deseos = this.nuevosDeseos;
+      this.evento.deseos = JSON.parse(JSON.stringify(this.listDeseosSelected));
 
       this.eventoService.addEvento( this.evento ).subscribe( (data: Evento) => {
         // tslint:disable-next-line: no-console
@@ -181,7 +202,7 @@ export class NuevoEventoComponent implements OnInit {
     if ( this.evento.tipoCuenta == null || this.evento.tipoCuenta.length === 0 ) { return true; }
     if ( this.evento.emailCuenta == null || this.evento.emailCuenta.length === 0 ) { return true; }
     if ( this.evento.telefono == null || this.evento.telefono.length === 0 ) { return true; }
-    if ( this.nuevosDeseos == null || this.nuevosDeseos.length === 0 ) { return true; }
+    if ( this.listDeseosSelected == null || this.listDeseosSelected.length === 0 ) { return true; }
     return false;
   }
 
@@ -206,23 +227,12 @@ export class NuevoEventoComponent implements OnInit {
 
 
   terminarEvento() {
+    this.evento.invitados = JSON.parse(JSON.stringify(this.invitados));
+    this.evento.deseos = JSON.parse(JSON.stringify(this.listDeseosSelected));
+    console.log( this.evento );
     Swal.fire('Nuevo evento', 'Evento creado con éxito', 'success').then(() => {
       this.router.navigate(['/home']);
     });
   }
 
-  eliminarFilaDeseo( d: Deseo ) {
-    Swal.fire('Eliminar deseo', '¿Desea eliminar realmente este deseo?', 'warning').then(( rsp ) => {
-      if ( rsp ) {
-        let delDeseo = [];
-        this.nuevosDeseos.forEach((e, index) => {
-          if (e === d) {
-            delDeseo = this.nuevosDeseos.splice(index, 1);
-          }
-        });
-        this.listDeseos.push({ id: delDeseo[0].id, itemName: delDeseo[0].nombre });
-        this.listDeseos = this.listDeseos.sort( (a, b) => a.id - b.id );
-      }
-    });
-  }
 }

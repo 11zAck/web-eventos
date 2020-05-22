@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600');
+
 .tim-row {
     margin-bottom: 20px;
 }
@@ -770,6 +772,9 @@ virtual-scroll {
     -webkit-transform: rotate(-45deg) scale(1);
     transform: rotate(-45deg) scale(1);
 }
+.pure-checkbox.selected-item {
+    background-color: #fff9f6;
+}
 .list-message {
     text-align: center;
     margin: 0;
@@ -824,7 +829,7 @@ virtual-scroll {
   }
   
   .selected-list .c-list .c-token {
-    background: 0 0 !important;
+    background-color: #fb6733;
     color: #2c2c2c !important;
   }
   

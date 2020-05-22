@@ -1,17 +1,9 @@
 // Add additional styles here. For example, overwrite certain styles or add new components.
-/*
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700');
-*/
 html {
   position: relative;
   min-height: 100%;
 }
-/*
-body {
-    font-family: 'Montserrat', $font-family-base;
-    margin-bottom: 60px;
-}
-*/
+
 .custom-control-label{
     &::after{
         top: .1rem;

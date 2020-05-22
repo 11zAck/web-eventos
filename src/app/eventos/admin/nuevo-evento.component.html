@@ -4,8 +4,8 @@
         <div class="content-center">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto">
-                    <h1 class="title">Nuevo evento</h1>
-                    <h4>¡Tu próxima celebración será espectacular!</h4>
+                    <h1 class="title">Crea tu evento</h1>
+                    <h4>¡Tu próxima celebración será inolvidable!</h4>
                 </div>
             </div>
         </div>
@@ -13,183 +13,125 @@
     <!-- NUEVO EVENTO :: SECCION PRINCIPAL -->
     <div class="section" *ngIf="step1">
         <div class="container">
+            <h3 class="text-center border-bottom padding-">Detalles del evento</h3>
             <div class="row">
-                <div class="col d-flex justify-content-center">
-                    <ul class="nav nav-pills nav-pills-primary nav-pills-icons" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#aform" role="tablist">
-                                <i class="fas fa-cocktail"></i>
-                                Aniversario
-                            </a>
-                        </li>
-                        <!--
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#cform" role="tablist">
-                <i class="fas fa-gift"></i>
-                Cumpleaños
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#mform" role="tablist">
-                <i class="fas fa-ring"></i>
-                Matrimonio
-              </a>
-            </li>
-          -->
-                    </ul>
+                <div class="col-6 mx-auto">
+                    <p class="text-muted">Completa cada campo con la información solicitada. Esto nos ayudará a entregar un mejor servicio.</p>
                 </div>
             </div>
-            <div class="row mt-4">
-                <div class="col">
-                    <div class="tab-content tab-space">
-                        <!-- ANIVERSARIO -->
-                        <div class="tab-pane active" id="aform">
-                        <!--<form >-->
-                            <div class="row">
-                                <div class="col-6 mx-auto form-group">
-                                    <label for="nombre">Título del aniversario</label>
-                                    <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="helpId" placeholder="Título" [(ngModel)]="evento.titulo"  />
-                                    <small id="helpId" class="form-text text-muted">Con este título tus invitados conocerán tu aniversario.</small>
-                                </div>
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col-6 mx-auto form-group">
-                                    <label for="fecha">Fecha y hora del aniversario</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="d-flex col-6 mx-auto form-group justify-content-between align-items-center">
-                                    <ngb-datepicker ngDefaultControl [(ngModel)]="datepick"></ngb-datepicker>
-                                    <ngb-timepicker ngDefaultControl [(ngModel)]="timepick"></ngb-timepicker>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6 mx-auto">
-                                    <small id="helpId" class="form-text text-muted">Fecha de la celebración de tu aniversario.</small>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-6 mx-auto form-group">
-                                    <label for="lugar">Lugar del aniversario</label>
-                                    <input type="text" class="form-control" name="lugar" id="lugar" aria-describedby="helpId" placeholder="Dirección" [(ngModel)]="evento.direccion"    />
-                                    <small id="helpId" class="form-text text-muted">Dirección en que se celebrará tu aniversario.</small>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-6 mx-auto form-group">
-                                    <label for="banco" class="d-block">Entidad Financiera</label>
-                                    <angular2-multiselect 
-                                        [data]="listBancos"
-                                        [(ngModel)]="listBancosSelected"
-                                        [settings]="listBancosSettings"
-                                        (onSelect)="onBancoSelect($event)">
-                                    </angular2-multiselect>
-                                    <small id="helpId" class="form-text text-muted">Entidad Financiera donde se realizarán los abonos de tus invitados.</small>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-6 mx-auto form-group">
-                                    <label for="tipo_cuenta" class="d-block">Tipo de cuenta</label>
-                                    <angular2-multiselect 
-                                        [data]="listTipoCuenta"
-                                        [(ngModel)]="listTipoCuentaSelected"
-                                        [settings]="listTipoCuentaSettings"
-                                        (onSelect)="onTipoCuentaSelect($event)"></angular2-multiselect>
-                                    <small id="helpId" class="form-text text-muted">Tipo de cuenta de tu entidad financiera.</small>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-6 mx-auto form-group">
-                                    <label for="num_cuenta">Número de Cuenta</label>
-                                    <input type="text" class="form-control" name="num_cuenta" id="num_cuenta" aria-describedby="helpId" placeholder="00012223904" [(ngModel)]="evento.numeroCuenta"   />
-                                    <small id="helpId" class="form-text text-muted">Número de cuenta corriente donde se realizarán los abonos.</small>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-6 mx-auto form-group">
-                                    <label for="email_banco">Correo Electrónico</label>
-                                    <input type="text" class="form-control" name="email_banco" id="email_banco" aria-describedby="helpId" placeholder="comprobante@ejemplo.cl" [(ngModel)]="evento.emailCuenta"   />
-                                    <small id="helpId" class="form-text text-muted">En esta dirección se notificarán los abonos realizados.</small>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-6 mx-auto form-group">
-                                    <label for="telefono">Teléfono</label>
-                                    <input type="text" class="form-control" name="telefono" id="telefono" aria-describedby="helpId" placeholder="+56 9 22 345 643" [(ngModel)]="evento.telefono"   />
-                                    <small id="helpId" class="form-text text-muted">Sólo usaremos tu número para informaciones importantes.</small>
-                                </div>
-                            </div>
-
-                        <!--</form>-->
-
-                            <div class="space-70"></div>
-
-                            <h3 class="text-center border-bottom padding-">Deseos disponibles en tu evento</h3>
-
-                            <div class="row">
-                                <div class="col-6 mx-auto">
-                                    <div class="form-inline">
-                                        <angular2-multiselect 
-                                            [data]="listDeseos" 
-                                            [(ngModel)]="listDeseosSelected"  
-                                            [settings]="listDeseosSettings" 
-                                            (onSelect)="onDeseoSelec($event)" 
-                                            style="width:60%;"></angular2-multiselect>
-                                        <button class="btn btn-primary btn-round mx-2" type="button" (click)="onClickAddDeseo()"><i class="now-ui-icons ui-1_simple-add mr-2"></i> Agregar deseo</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6 mx-auto">
-
-                                    <table class="table" *ngIf="nuevosDeseos?.length > 0">
-                                        <thead>
-                                            <tr>
-                                                <th>Deseo</th>
-                                                <th>Valor en pesos</th>
-                                                <th>Acción</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr *ngFor="let d of nuevosDeseos; let i = index">
-                                                <td scope="row">{{d.nombre}}</td>
-                                                <td>
-                                                    <div class="form-group mb-0">
-                                                        <input type="text" class="form-control text-right" name="valor" id="valor" aria-describedby="helpId" placeholder="$ 0" 
-                                                            [(ngModel)]="d.valor"/>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <button class="btn btn-danger btn-icon btn-round" (click)="eliminarFilaDeseo( d )">
-                                                        <i class="fas fa-times"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- CUMPLEAÑOS 
-                <div class="tab-pane" id="cform">
-    
+            <div class="row">
+                <div class="col-6 mx-auto form-group">
+                    <label for="eventType" class="d-block">Tu evento es...</label>
+                    <angular2-multiselect 
+                        [data]="listEventType" 
+                        [(ngModel)]="listSelectedEventType" 
+                        [settings]="listSettingsEventType" 
+                        (onSelect)="onSelectEventType($event)">
+                    </angular2-multiselect>
+                    <small id="helpId" class="form-text text-muted"></small>
                 </div>
-                -->
-
-                        <!-- MATRIMONIO
-                <div class="tab-pane" id="mform">
-                
+            </div>
+        
+            <div class="row">
+                <div class="col-6 mx-auto form-group">
+                    <label for="nombre">Título de tu evento</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="helpId" placeholder="Título" [(ngModel)]="evento.titulo"  />
+                    <small id="helpId" class="form-text text-muted">Con este título tus invitados conocerán tu evento.</small>
                 </div>
-                -->
-                    </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-6 mx-auto form-group">
+                    <label for="fecha">Fecha y hora del evento</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="d-flex col-5 mx-auto form-group justify-content-between align-items-center">
+                    <ngb-datepicker ngDefaultControl [(ngModel)]="datepick"></ngb-datepicker>
+                    <ngb-timepicker ngDefaultControl [(ngModel)]="timepick"></ngb-timepicker>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6 mx-auto form-group">
+                    <label for="lugar">Lugar del evento</label>
+                    <input type="text" class="form-control" name="lugar" id="lugar" aria-describedby="helpId" placeholder="Dirección" [(ngModel)]="evento.direccion"    />
+                    <small id="helpId" class="form-text text-muted">Dirección en que se celebrará tu evento.</small>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6 mx-auto form-group">
+                    <label for="banco" class="d-block">Entidad Financiera</label>
+                    <angular2-multiselect 
+                        [data]="listBancos"
+                        [(ngModel)]="listBancosSelected"
+                        [settings]="listBancosSettings"
+                        (onSelect)="onBancoSelect($event)">
+                    </angular2-multiselect>
+                    <small id="helpId" class="form-text text-muted">Entidad Financiera donde se realizarán los abonos de tus invitados.</small>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6 mx-auto form-group">
+                    <label for="tipo_cuenta" class="d-block">Tipo de cuenta</label>
+                    <angular2-multiselect 
+                        [data]="listTipoCuenta"
+                        [(ngModel)]="listTipoCuentaSelected"
+                        [settings]="listTipoCuentaSettings"
+                        (onSelect)="onTipoCuentaSelect($event)"></angular2-multiselect>
+                    <small id="helpId" class="form-text text-muted">Tipo de cuenta de tu entidad financiera.</small>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6 mx-auto form-group">
+                    <label for="num_cuenta">Número de Cuenta</label>
+                    <input type="text" class="form-control" name="num_cuenta" id="num_cuenta" aria-describedby="helpId" placeholder="00012223904" [(ngModel)]="evento.numeroCuenta"   />
+                    <small id="helpId" class="form-text text-muted">Número de cuenta corriente donde se realizarán los abonos.</small>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6 mx-auto form-group">
+                    <label for="email_banco">Correo Electrónico</label>
+                    <input type="text" class="form-control" name="email_banco" id="email_banco" aria-describedby="helpId" placeholder="comprobante@ejemplo.cl" [(ngModel)]="evento.emailCuenta"   />
+                    <small id="helpId" class="form-text text-muted">En esta dirección se notificarán los abonos realizados.</small>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6 mx-auto form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="text" class="form-control" name="telefono" id="telefono" aria-describedby="helpId" placeholder="+56 9 22 345 643" [(ngModel)]="evento.telefono"   />
+                    <small id="helpId" class="form-text text-muted">Sólo usaremos tu número para informaciones importantes.</small>
+                </div>
+            </div>
+
+        <!--</form>-->
+
+            <div class="space-70"></div>
+
+            <h3 class="text-center border-bottom padding-">Deseos disponibles en tu evento</h3>
+            <div class="row">
+                <div class="col-6 mx-auto">
+                    <p class="text-muted">Estos deseos estarán disponibles en tu evento. Siéntete libre de agregar más o quitar algunos.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mx-auto">
+                    <angular2-multiselect 
+                        [data]="listDeseos" 
+                        [(ngModel)]="listDeseosSelected"  
+                        [settings]="listDeseosSettings" 
+                        (onSelect)="onDeseoSelec($event)">
+                    </angular2-multiselect>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mx-auto ">
+                    <button class="btn btn-primary btn-round mx-2" type="button" (click)="onClickAddDeseo()"><i class="now-ui-icons ui-1_simple-add mr-2"></i> Agregar deseo</button>
                 </div>
             </div>
 
@@ -206,6 +148,11 @@
     <div class="section" *ngIf="step2">
         <div class="container">
             <h3 class="text-center border-bottom padding-">Agrega invitados a tu evento</h3>
+            <div class="row">
+                <div class="col-6 mx-auto">
+                    <p class="text-muted">Aquí debes especificar el nombre de tus invitados junto con su correo electrónico. Más adelante podrás invitar personas que no tengan correo electrónico.</p>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-6 mx-auto form-group">
                     <label for="nombreInv">Nombre</label>
@@ -232,11 +179,12 @@
 
             <div class="row"> 
                 <div class="col-6 mx-auto">
-                  <button class="btn btn-primary btn-block btn-round" (click)="agregarInvitado()">Invitar</button>
+                  <button class="btn btn-primary btn-round" (click)="agregarInvitado()">Invitar</button>
                 </div>
             </div>
             <div class="space-50"></div>
-            <div class="row">
+
+            <div class="row" [ngClass]="{'d-none': invitados.length === 0}">
                 <div class="col-6 mx-auto">
                     <table class="table table-sm">
                         <thead>
@@ -257,9 +205,14 @@
                     </table>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" [ngClass]="{'d-none': invitados.length === 0}">
                 <div class="col-6 mx-auto">
-                    <button class="btn btn-primary btn-block btn-round" (click)="terminarEvento()">Finalizar</button>
+                    <p class="text-muted">Al presionar finalizar aceptas nuestras políticas de privacidad y uso. Además, se enviará un correo electrónico a cada uno de tus invitados, avisándoles de tu envento.</p>
+                </div>
+            </div>
+            <div class="row" [ngClass]="{'d-none': invitados.length === 0}">
+                <div class="col-6 mx-auto">
+                    <button class="btn btn-primary btn-round" [disabled]="invitados.length === 0" (click)="terminarEvento()">Finalizar</button>
                 </div>
             </div>
             <div class="space-70"></div>
