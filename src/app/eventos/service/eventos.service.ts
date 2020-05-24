@@ -1,3 +1,4 @@
+import { Invitado } from './../classes/invitado';
 import { Injectable } from '@angular/core';
 import { Evento } from '../classes/evento';
 import { BANCOS, TIPO_CUENTA, DESEOS, EVENTOS } from './data.json';
@@ -34,6 +35,18 @@ export class EventosService {
 
   getDeseosDisponibles(): Observable<Listado[]> { return of(DESEOS); }
 
-  addEvento( e: Evento ): Observable<Evento> { return of( e ); }
+  addEvento( e: Evento ): Observable<Evento> {
+    const newId = EVENTOS.length + 1 ;
+    e.id = newId;
+    EVENTOS.push(e);
+    return of( e );
+  }
+
+  addInvitado( idEvento: number, i: Invitado ): Observable<Invitado> {
+    const ndx = EVENTOS.findIndex( (e) => e.id === idEvento  );
+    const evento: Evento = EVENTOS[ndx];
+    evento.invitados.push(i);
+    return of( i );
+  }
 
 }

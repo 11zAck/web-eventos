@@ -13,7 +13,7 @@ export interface IEvento {
     activo: boolean;
     reportado: boolean;
     banco: Banco;
-    tipoCuenta: string;
+    tipoCuenta: { id: string, itemName: string };
     numeroCuenta: string;
     rutCuenta: string;
     emailCuenta: string;
@@ -37,7 +37,7 @@ export class Evento implements IEvento {
     activo: boolean;
     reportado: boolean;
     banco: Banco;
-    tipoCuenta: string;
+    tipoCuenta: { id: string, itemName: string };
     numeroCuenta: string;
     rutCuenta: string;
     emailCuenta: string;
@@ -46,8 +46,8 @@ export class Evento implements IEvento {
     creacion: Date;
     edicion: Date;
     propietario: Organizador;
-    invitados: Array<Invitado>;
-    deseos: Array<Deseo>;
+    invitados: Array<Invitado> = [];
+    deseos: Array<Deseo> = [];
 
     listDeseosToSelect(): any {
         console.log('largo: ' + this.deseos.length );

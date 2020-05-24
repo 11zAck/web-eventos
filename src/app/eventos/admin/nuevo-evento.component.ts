@@ -65,7 +65,7 @@ export class NuevoEventoComponent implements OnInit {
   public nuevoInvitado: Invitado = new Invitado();
   public invitados: Invitado[] = [];
   public newEmail: string;
-  
+
 
   constructor(
     private calendar: NgbCalendar,
@@ -178,10 +178,12 @@ export class NuevoEventoComponent implements OnInit {
       const datestr = this.datepick.year + '-' + this.datepick.month + '-' + this.datepick.day;
       this.evento.fechaEvento = new Date( datestr + ' ' + timestr );
       this.evento.deseos = JSON.parse(JSON.stringify(this.listDeseosSelected));
+      this.evento.tipoEvento = (this.listSelectedEventType.pop()).id;
 
       this.eventoService.addEvento( this.evento ).subscribe( (data: Evento) => {
         // tslint:disable-next-line: no-console
         console.debug('Evento guardado: ', data);
+        console.log('Identificador. data.id:' + data.id + ', evento.id: ' + this.evento.id );
       }, (error) => {
         // tslint:disable-next-line: no-console
         console.debug('Error guardar evento');
@@ -195,11 +197,12 @@ export class NuevoEventoComponent implements OnInit {
   }
 
   private formularioIncompleto(): boolean {
+    if ( this.listSelectedEventType == null || this.listSelectedEventType.length === 0 ) { return true; }
     if ( this.evento.titulo == null || this.evento.titulo.length === 0 ) { return true; }
     if ( this.evento.direccion == null || this.evento.direccion.length === 0 ) { return true; }
     if ( this.evento.banco == null ) { return true; }
     if ( this.evento.numeroCuenta == null || this.evento.numeroCuenta.length === 0 ) { return true; }
-    if ( this.evento.tipoCuenta == null || this.evento.tipoCuenta.length === 0 ) { return true; }
+    if ( this.evento.tipoCuenta == null ) { return true; }
     if ( this.evento.emailCuenta == null || this.evento.emailCuenta.length === 0 ) { return true; }
     if ( this.evento.telefono == null || this.evento.telefono.length === 0 ) { return true; }
     if ( this.listDeseosSelected == null || this.listDeseosSelected.length === 0 ) { return true; }
@@ -227,12 +230,36 @@ export class NuevoEventoComponent implements OnInit {
 
 
   terminarEvento() {
-    this.evento.invitados = JSON.parse(JSON.stringify(this.invitados));
-    this.evento.deseos = JSON.parse(JSON.stringify(this.listDeseosSelected));
-    console.log( this.evento );
-    Swal.fire('Nuevo evento', 'Evento creado con éxito', 'success').then(() => {
-      this.router.navigate(['/home']);
+
+    console.log('Almacenando invitados...');
+    const cantidadInvitados = this.invitados.length;
+    let invitadosGuardados = 0;
+    this.invitados.forEach( (i, ndx) => {
+      this.eventoService.addInvitado( this.evento.id, i ).subscribe( (data: Invitado) => {
+        // tslint:disable-next-line: no-console
+        console.debug('Invitado guardado: ', data);
+      }, (error) => {
+        // tslint:disable-next-line: no-console
+        console.debug('Error guardar invitado');
+      }, () => {
+        invitadosGuardados++;
+      });
     });
+
+    if ( invitadosGuardados === cantidadInvitados ) {
+      Swal.fire(
+        'Nuevo evento',
+        'Evento creado con éxito. Tus invitados serán notificados durante los próximo minutos.',
+        'success')
+      .then(() => {
+        this.router.navigate(['/eventos']);
+      });
+    } else {
+      Swal.fire(
+        'Nuevo evento',
+        'Tuvimos un inconveniente al almacenar tu evento o sus invitados.',
+        'error');
+    }
   }
 
 }
