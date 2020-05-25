@@ -36,14 +36,29 @@ export class EditarEventoComponent implements OnInit {
   }
 
   removerInvitado(i: Invitado) {
-    Swal.fire('Invitado', `¿Retirar invitación para ${i.firstname}?`, 'warning').then((v) => {
-      if (v) {
+    Swal.fire({
+      title: 'Invitado',
+      text: `¿Retirar invitación para ${i.firstname} ${i.lastname}?`,
+      type: 'warning',
+      showConfirmButton: true,
+      confirmButtonText: 'Continuar',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      customClass: {
+        confirmButton: 'btn-primary btn-round',
+        cancelButton: 'btn-round'
+      }
+    }).then((v) => {
+      if (v.value) {
         console.log('Invitado eliminado: ', i);
+        /*
         this.evento.invitados.forEach((e, index) => {
           if (e === i) {
-            this.evento.invitados.splice(index, 1);
+            //this.evento.invitados.splice(index, 1);
           }
         });
+        */
+        this.eventosService.removeInvitado( this.evento.id, i.email );
       }
     });
   }

@@ -27,3 +27,13 @@ small {
   width: 100%;
   max-width: 880px;
 }
+
+.btn.btn-xs {
+  font-size: 9px;
+}
+
+.card .card-footer .stats.stats-right {
+    float: right;
+    line-height: 20px;
+    font-size: 12px;
+}

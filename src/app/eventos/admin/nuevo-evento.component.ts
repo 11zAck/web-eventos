@@ -129,7 +129,7 @@ export class NuevoEventoComponent implements OnInit {
 
   onSelectEventType( tipoEvento: any ) {
     console.log( tipoEvento );
-    this.evento.tipoEvento = tipoEvento.id;
+    this.evento.tipoEvento = tipoEvento;
   }
 
   onBancoSelect( banco: any ) {
@@ -202,6 +202,7 @@ export class NuevoEventoComponent implements OnInit {
     if ( this.evento.direccion == null || this.evento.direccion.length === 0 ) { return true; }
     if ( this.evento.banco == null ) { return true; }
     if ( this.evento.numeroCuenta == null || this.evento.numeroCuenta.length === 0 ) { return true; }
+    if ( this.evento.rutCuenta == null || this.evento.rutCuenta.length === 0 ) { return true; }
     if ( this.evento.tipoCuenta == null ) { return true; }
     if ( this.evento.emailCuenta == null || this.evento.emailCuenta.length === 0 ) { return true; }
     if ( this.evento.telefono == null || this.evento.telefono.length === 0 ) { return true; }
@@ -216,8 +217,15 @@ export class NuevoEventoComponent implements OnInit {
   }
 
   removerInvitado( i: Invitado ) {
-    Swal.fire('Invitado', `¿Retirar invitación para ${ i.firstname }?`, 'warning').then((v) => {
-      if ( v ) {
+    Swal.fire({
+      title: 'Invitado',
+      text: `¿Retirar invitación para ${ i.firstname }?`,
+      type: 'warning',
+      showConfirmButton: true,
+      confirmButtonText: 'Continuar'
+    })
+    .then((v) => {
+      if ( v.value ) {
         console.log('Invitado eliminado: ', i );
         this.invitados.forEach( (e, index) => {
           if ( e === i ) {

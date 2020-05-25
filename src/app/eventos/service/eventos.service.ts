@@ -49,4 +49,19 @@ export class EventosService {
     return of( i );
   }
 
+  removeInvitado( idEvento: number, email: string ): Observable<Invitado> {
+    const ndx = EVENTOS.findIndex((e) => e.id === idEvento);
+    const evento: Evento = EVENTOS[ndx];
+    let invitado: Invitado;
+
+    evento.invitados.forEach((e, index) => {
+      if (e.email === email) {
+        const invitados: Array<Invitado> = evento.invitados.splice(index, 1);
+        invitado = invitados[0];
+      }
+    });
+
+    return of( invitado );
+  }
+
 }

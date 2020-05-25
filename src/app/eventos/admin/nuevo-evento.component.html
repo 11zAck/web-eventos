@@ -95,6 +95,14 @@
 
             <div class="row">
                 <div class="col-6 mx-auto form-group">
+                    <label for="num_cuenta">RUT propietario de la Cuenta</label>
+                    <input type="text" class="form-control" name="rut_cuenta" id="rut_cuenta" aria-describedby="helpId" placeholder="17.892.237-1" [(ngModel)]="evento.rutCuenta" />
+                    <small id="helpId" class="form-text text-muted">RUT del propietario de la cuenta a la que se realizan los abonos.</small>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6 mx-auto form-group">
                     <label for="email_banco">Correo Electrónico</label>
                     <input type="text" class="form-control" name="email_banco" id="email_banco" aria-describedby="helpId" placeholder="comprobante@ejemplo.cl" [(ngModel)]="evento.emailCuenta"   />
                     <small id="helpId" class="form-text text-muted">En esta dirección se notificarán los abonos realizados.</small>

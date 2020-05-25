@@ -1,3 +1,4 @@
+import { TipoEvento } from './../classes/tipo-evento';
 import { Evento } from '../classes/evento';
 import { Listado } from '../classes/listado';
 
@@ -40,13 +41,14 @@ export const DESEOS: Listado[] = [
 export const EVENTOS: any[] = [
     {
         id: 1,
+        tipoEvento: { id: 1, itemName: 'Aniversario' },
         titulo: 'Aniversario 20 años',
         descripcion: '',
         direccion: 'Maria Elena 361',
         activo: true,
         reportado: false,
         banco: { id: 1, nombre: 'Banco Chile', activo: true },
-        tipoCuenta: 'Cuenta corriente',
+        tipoCuenta: { id: 'CC', itemName: 'Cuenta corriente'},
         numeroCuenta: '1587092662',
         rutCuenta: '16.376.726-3',
         emailCuenta: 'pagos@gmail.com',
@@ -66,17 +68,18 @@ export const EVENTOS: any[] = [
     },
     {
         id: 2,
+        tipoEvento: { id: 3, itemName: 'Cumpleaños' },
         titulo: 'Cumpleaños Isaac',
         descripcion: '',
         direccion: 'Maria Elena 361',
         activo: true,
         reportado: false,
         banco: { id: 1, nombre: 'Banco Chile', activo: true },
-        tipoCuenta: '',
-        numeroCuenta: '',
-        rutCuenta: '',
-        emailCuenta: '',
-        telefono: '',
+        tipoCuenta: { id: 'CV', itemName: 'Cuenta Vista' },
+        numeroCuenta: '000112544200',
+        rutCuenta: '17.385.326-7',
+        emailCuenta: 'mail@email.com',
+        telefono: '9458586658',
         fechaEvento: new Date('2019-09-07 19:30:00'),
         creacion: new Date(),
         edicion: new Date(),

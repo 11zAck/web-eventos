@@ -15,184 +15,183 @@
 
   <div class="section">
     <div class="container">
-      <div class="row">
-        <div class="col-6 mx-auto mb-4">
-          Por el momento sólo puedes revisar la información de tu evento.
-          <br>Para modificar su información debes contactarnos.
-        </div>
-      </div>
-      <div class="row">
-        <div class="col d-flex justify-content-center">
-          <ul class="nav nav-pills nav-pills-primary nav-pills-icons" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#aform" role="tablist">
-                <i class="fas fa-cocktail"></i>
-                Aniversario
-              </a>
-            </li>
-            <!--
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#cform" role="tablist">
-                <i class="fas fa-gift"></i>
-                Cumpleaños
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#mform" role="tablist">
-                <i class="fas fa-ring"></i>
-                Matrimonio
-              </a>
-            </li>
-          -->
-          </ul>
-        </div>
-      </div>
 
-      <!-- SECTION -->
-      <div class="row mt-4">
-        <div class="col">
-          <div class="tab-content tab-space">
-            <div class="tab-pane active" id="aform">
-
-              <div class="row">
-                <div class="col-12 col-md-6">
-
-                
-
-              <div class="row">
-                <div class="col mx-auto form-group">
-                  <label for="nombre">Título del aniversario</label>
-                  <input type="text" class="form-control-plaintext font-weight-bold ml-3" id="nombre" name="nombre" aria-describedby="helpId"
-                    placeholder="Título" [value]="evento.titulo" />
-                  <small id="helpId" class="form-text text-muted">Con este título tus invitados conocerán tu
-                    aniversario.</small>
-                </div>
+      <div class="alert alert-warning">
+        <div class="container">
+          <div class="alert-wrapper">
+            <button class="close" name="button" type="button"><span aria-hidden="true"><i class="now-ui-icons ui-1_simple-remove"></i></span></button>
+            <div class="message">
+              <div class="alert-icon ng-star-inserted">
+                <i class="now-ui-icons travel_info"></i>
               </div>
-
-              <div class="row">
-                <div class="col mx-auto form-group">
-                  <label for="fecha">Fecha y hora del aniversario</label>
-                  <input type="text" class="form-control-plaintext font-weight-bold ml-3" id="nombre" name="nombre" aria-describedby="helpId"
-                    placeholder="Título" [value]="evento.fechaEvento | date:'d \'de\' MMMM \'de\' y \'a las\' H:mm'" />
-                  <small id="helpId" class="form-text text-muted">Fecha de la celebración de tu aniversario.</small>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col mx-auto form-group">
-                  <label for="lugar">Lugar del aniversario</label>
-                  <input type="text" class="form-control-plaintext font-weight-bold ml-3" name="lugar" id="lugar" aria-describedby="helpId"
-                    placeholder="Dirección" [value]="evento.direccion" />
-                  <small id="helpId" class="form-text text-muted">Dirección en que se celebrará tu aniversario.</small>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col mx-auto form-group">
-                  <label for="lugar">Banco</label>
-                  <input type="text" class="form-control-plaintext font-weight-bold ml-3" name="lugar" id="lugar"
-                    aria-describedby="helpId" placeholder="Dirección" [value]="evento.banco.nombre" />
-                  <small id="helpId" class="form-text text-muted">Banco al que se transferirán los regalos de tus invitados.</small>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col mx-auto form-group">
-                  <label for="lugar">Tipo de cuenta</label>
-                  <input type="text" class="form-control-plaintext font-weight-bold ml-3" name="lugar" id="lugar"
-                    aria-describedby="helpId" placeholder="Dirección" [value]="evento.tipoCuenta.itemName" />
-                  <small id="helpId" class="form-text text-muted">Tipo de cuenta, de la entidad financiera.</small>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col mx-auto form-group">
-                  <label for="lugar">Número de la cuenta</label>
-                  <input type="text" class="form-control-plaintext font-weight-bold ml-3" name="lugar" id="lugar"
-                    aria-describedby="helpId" placeholder="Dirección" [value]="evento.numeroCuenta" />
-                  <small id="helpId" class="form-text text-muted">Número de la cuenta.</small>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col mx-auto form-group">
-                  <label for="email_banco">Correo Electrónico</label>
-                  <input type="text" class="form-control-plaintext font-weight-bold ml-3" name="email_banco" id="email_banco" aria-describedby="helpId"
-                    placeholder="comprobante@ejemplo.cl" [value]="evento.emailCuenta" />
-                  <small id="helpId" class="form-text text-muted">En esta dirección se notificarán los abonos
-                    realizados.</small>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col mx-auto form-group">
-                  <label for="telefono">Teléfono</label>
-                  <input type="text" class="form-control-plaintext font-weight-bold ml-3" name="telefono" id="telefono" aria-describedby="helpId"
-                    placeholder="+56 9 22 345 643" [value]="evento.telefono" />
-                  <small id="helpId" class="form-text text-muted">Sólo usaremos tu número para informaciones
-                    importantes.</small>
-                </div>
-              </div>
-
-              </div>
-
-                <div class="col-12 col-md-6">
-
-                  <h3>Invitados</h3>
-
-                  <table class="table table-sm">
-                    <tbody>
-                      <tr *ngFor="let i of evento.invitados">
-                        <td>{{ i.firstname + ' ' + i.lastname + ' ( ' + i.email + ' ) '}}</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-round"
-                            (click)="removerInvitado( i )">
-                            <i class="now-ui-icons ui-1_simple-remove"></i>
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-                  <h3 class="text-center border-bottom padding-">Agrega invitados a tu evento</h3>
-                  
-                    <div class="form-group">
-                      <label for="nombreInv">Nombre</label>
-                      <input type="text" class="form-control" id="nombreInv" name="nombreInv" aria-describedby="helpId"
-                        placeholder="Nombres" [(ngModel)]="nuevoInvitado.firstname" />
-                      <small id="helpId" class="form-text text-muted">Nombre de tu invitado</small>
-                    </div>
-                  
-                  
-                    <div class="form-group">
-                      <label for="ApellidosInv">Apellidos</label>
-                      <input type="text" class="form-control" id="ApellidosInv" name="ApellidosInv"
-                        aria-describedby="helpId" placeholder="Apellidos" [(ngModel)]="nuevoInvitado.lastname" />
-                      <small id="helpId" class="form-text text-muted">Apellidos de tu invitado</small>
-                    </div>
-                  
-                  
-                    <div class="form-group">
-                      <label for="emailInv">Correo electrónico</label>
-                      <input type="email" class="form-control" id="emailInv" name="emailInv" aria-describedby="helpId"
-                        placeholder="ejemplo@email.cl" [(ngModel)]="nuevoInvitado.email" email />
-                      <small id="helpId" class="form-text text-muted">Correo electrónico de tu nuevo invitado.</small>
-                    </div>
-                  
-
-                  <div class="row">
-                    <div class="col">
-                      <button class="btn btn-primary btn-block btn-round" (click)="agregarInvitado()">Invitar</button>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
+              Por el momento sólo puedes modificar cierta información de tu evento. Para modificar otros datos debes contactarnos.
             </div>
           </div>
         </div>
       </div>
+      
+      <div class="row">
+        <div class="col-12 col-md-6">
+
+          <div class="row">
+            <div class="col mx-auto form-group">
+              <label for="tipoEvento">Tipo de evento</label>
+              <input type="text" class="form-control-plaintext font-weight-bold ml-3" id="tipoEvento" name="tipoEvento"
+                aria-describedby="helpId" placeholder="Tipo de evento" [value]="evento.tipoEvento.itemName" />
+              <small id="helpId" class="form-text text-muted">El tipo de evento que has escogido.</small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col mx-auto form-group">
+              <label for="nombre">Título del evento</label>
+              <input type="text" class="form-control-plaintext font-weight-bold ml-3" id="nombre" name="nombre" aria-describedby="helpId"
+                placeholder="Título" [value]="evento.titulo" />
+              <small id="helpId" class="form-text text-muted">Con este título tus invitados conocerán tu
+                evento.</small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col mx-auto form-group">
+              <label for="fecha">Fecha y hora del evento</label>
+              <input type="text" class="form-control-plaintext font-weight-bold ml-3" id="nombre" name="nombre" aria-describedby="helpId"
+                placeholder="Título" [value]="evento.fechaEvento | date:'d \'de\' MMMM \'de\' y \'a las\' H:mm'" />
+              <small id="helpId" class="form-text text-muted">Fecha de la celebración de tu evento.</small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col mx-auto form-group">
+              <label for="lugar">Lugar del evento</label>
+              <input type="text" class="form-control-plaintext font-weight-bold ml-3" name="lugar" id="lugar" aria-describedby="helpId"
+                placeholder="Dirección" [value]="evento.direccion" />
+              <small id="helpId" class="form-text text-muted">Dirección en que se celebrará tu evento.</small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col mx-auto form-group">
+              <label for="banco">Banco</label>
+              <input type="text" class="form-control-plaintext font-weight-bold ml-3" name="banco" id="banco"
+                aria-describedby="helpId" placeholder="Dirección" [value]="evento.banco.nombre" />
+              <small id="helpId" class="form-text text-muted">Banco al que se transferirán los regalos de tus invitados.</small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col mx-auto form-group">
+              <label for="tipoCuenta">Tipo de cuenta</label>
+              <input type="text" class="form-control-plaintext font-weight-bold ml-3" name="tipoCuenta" id="tipoCuenta"
+                aria-describedby="helpId" placeholder="Dirección" [value]="evento.tipoCuenta.itemName" />
+              <small id="helpId" class="form-text text-muted">Tipo de cuenta, de la entidad financiera.</small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col mx-auto form-group">
+              <label for="numCuenta">Número de la cuenta</label>
+              <input type="text" class="form-control-plaintext font-weight-bold ml-3" name="numCuenta" id="numCuenta"
+                aria-describedby="helpId" placeholder="Dirección" [value]="evento.numeroCuenta" />
+              <small id="helpId" class="form-text text-muted">Número de la cuenta.</small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col mx-auto form-group">
+              <label for="rutCuenta">RUT del propietario</label>
+              <input type="text" class="form-control-plaintext font-weight-bold ml-3" name="rutCuenta" id="rutCuenta"
+                aria-describedby="helpId" placeholder="10.000.000-1" [value]="evento.rutCuenta" />
+              <small id="helpId" class="form-text text-muted">RUT del propietario de la cuenta.</small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col mx-auto form-group">
+              <label for="email_banco">Correo Electrónico</label>
+              <input type="text" class="form-control-plaintext font-weight-bold ml-3" name="email_banco" id="email_banco" aria-describedby="helpId"
+                placeholder="comprobante@ejemplo.cl" [value]="evento.emailCuenta" />
+              <small id="helpId" class="form-text text-muted">En esta dirección se notificarán los abonos
+                realizados.</small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col mx-auto form-group">
+              <label for="telefono">Teléfono</label>
+              <input type="text" class="form-control-plaintext font-weight-bold ml-3" name="telefono" id="telefono" aria-describedby="helpId"
+                placeholder="+56 9 22 345 643" [value]="evento.telefono" />
+              <small id="helpId" class="form-text text-muted">Sólo usaremos tu número para informaciones
+                importantes.</small>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-12 col-md-6">
+
+          <h3>Invitados <small>{{ '( ' + evento.invitados?.length + ' )'}}</small></h3>
+
+          <div class="row">
+            <div class="col-md-12" *ngFor="let i of evento.invitados">
+              <div class="card mb-1">
+                <div class="card-body p-2">
+                  <div class="card-footer mt-0">
+                    <div class="author">
+                      <span>{{ i.firstname + ' ' + i.lastname }}</span>
+                    </div>
+                    <div class="stats stats-right">
+                      <i class="now-ui-icons ui-1_email-85"></i>{{ i.email }}
+                      <button class="btn btn-xs btn-link btn-danger m-1 py-1" (click)="removerInvitado( i )" > ELIMINAR </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="text-center border-bottom mt-4">Agrega invitados a tu evento</h3>
+          
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="nombreInv">Nombre</label>
+                <input type="text" class="form-control" id="nombreInv" name="nombreInv" aria-describedby="helpId"
+                  placeholder="Nombres" [(ngModel)]="nuevoInvitado.firstname" />
+                <small id="helpId" class="form-text text-muted">Nombre de tu invitado</small>
+              </div>
+            </div>
+            <div class="col-6">
+              
+              <div class="form-group">
+                <label for="ApellidosInv">Apellidos</label>
+                <input type="text" class="form-control" id="ApellidosInv" name="ApellidosInv"
+                  aria-describedby="helpId" placeholder="Apellidos" [(ngModel)]="nuevoInvitado.lastname" />
+                <small id="helpId" class="form-text text-muted">Apellidos de tu invitado</small>
+              </div>
+
+            </div>
+          </div>
+        
+        
+        
+          <div class="form-group">
+            <label for="emailInv">Correo electrónico</label>
+            <input type="email" class="form-control" id="emailInv" name="emailInv" aria-describedby="helpId"
+              placeholder="ejemplo@email.cl" [(ngModel)]="nuevoInvitado.email" email />
+            <small id="helpId" class="form-text text-muted">Correo electrónico de tu nuevo invitado.</small>
+          </div>
+          
+
+          <div class="row">
+            <div class="col">
+              <button class="btn btn-primary btn-round" (click)="agregarInvitado()">Invitar</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
 
       <div class="div">
         <div class="row">

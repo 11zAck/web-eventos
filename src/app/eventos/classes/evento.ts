@@ -1,3 +1,4 @@
+import { Listado } from './listado';
 import { Banco } from './banco';
 import { Invitado } from './invitado';
 import { Deseo } from './deseo';
@@ -6,14 +7,14 @@ import { Organizador } from './organizador';
 export interface IEvento {
 
     id: number;
-    tipoEvento: number;
+    tipoEvento: Listado;
     titulo: string;
     descripcion: string;
     direccion: string;
     activo: boolean;
     reportado: boolean;
     banco: Banco;
-    tipoCuenta: { id: string, itemName: string };
+    tipoCuenta: Listado;
     numeroCuenta: string;
     rutCuenta: string;
     emailCuenta: string;
@@ -30,14 +31,14 @@ export interface IEvento {
 export class Evento implements IEvento {
 
     id: number;
-    tipoEvento: number;
+    tipoEvento: Listado;
     titulo: string;
     descripcion: string;
     direccion: string;
     activo: boolean;
     reportado: boolean;
     banco: Banco;
-    tipoCuenta: { id: string, itemName: string };
+    tipoCuenta: Listado;
     numeroCuenta: string;
     rutCuenta: string;
     emailCuenta: string;
