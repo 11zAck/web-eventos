@@ -30,7 +30,7 @@
               </a>
             </li>
         </ul>
-        <ul class="navbar-nav ml-auto d-md-none">
+        <ul class="navbar-nav ml-auto d-md-none" *ngIf="!authService.isAuthenticated()">
           <li class="nav-item" id="item-register">
             <a class="nav-link btn btn-neutral btn-sm mr-2" [routerLink]="['/register']" routerLinkActive="d-none">
               <i class="fas fa-fingerprint mr-2"></i>
@@ -46,7 +46,7 @@
         </ul>
     </div>
 
-    <form class="form-inline my-2 my-lg-0 d-none d-md-flex">
+    <form class="form-inline my-2 my-lg-0 d-none d-md-flex" *ngIf="!authService.isAuthenticated()">
          <a class="nav-link btn btn-neutral btn-sm mr-2" [routerLink]="['/register']" routerLinkActive="d-none">
            <i class="fas fa-fingerprint mr-2"></i>
            <p>Registrarme</p>
@@ -56,6 +56,13 @@
            <p>Ingresar</p>
          </a>
     </form>
+
+    <div ngbDropdown class="d-inline-block" *ngIf="authService.isAuthenticated()">
+      <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{authService.usuario.firstname}}</button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button ngbDropdownItem (click)="logout()">Salir</button>
+      </div>
+    </div>
 
 <!--
     <a class="nav-link btn btn-primary d-md-none ml-auto btn-sm" [routerLink]="['/login']">

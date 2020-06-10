@@ -27,6 +27,7 @@ import { EventoInvitadoComponent } from './eventos/invitado/evento-invitado.comp
 import { EventosComponent } from './eventos/admin/eventos.component';
 import { EventosService } from './eventos/service/eventos.service';
 import { TransbankService } from './eventos/service/transbank.service';
+import { HttpClientModule } from '@angular/common/http';
 
 registerLocaleData(localeCL);
 
@@ -55,7 +56,8 @@ registerLocaleData(localeCL);
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule
   ],
   providers: [
     CurrencyPipe,

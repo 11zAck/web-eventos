@@ -1,12 +1,14 @@
 export class Usuario {
   id?: number;
   username?: string;
+  email?: string;
   password?: string;
   dni?: string;
   firstname?: string;
   lastname?: string;
   birthday?: Date;
   enabled?: boolean;
+  roles?: string[] = [];
 
   constructor(
     id?: number,
@@ -27,5 +29,5 @@ export class Usuario {
     this.birthday = birthday;
     this.enabled = enabled;
   }
-  
+
 }

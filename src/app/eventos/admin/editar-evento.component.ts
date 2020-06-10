@@ -66,6 +66,7 @@ export class EditarEventoComponent implements OnInit {
   agregarInvitado() {
     console.log('Nuevo invitado: ', this.nuevoInvitado);
     this.evento.invitados.push(this.nuevoInvitado);
+    this.eventosService.addInvitado( this.evento.id, this.nuevoInvitado );
     this.nuevoInvitado = new Invitado();
   }
 

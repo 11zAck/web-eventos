@@ -1,3 +1,5 @@
+import { AuthService } from './../auth/service/auth.service';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeLoginComponent implements OnInit {
 
-  constructor() { }
+  formulario;
+
+  constructor(
+    private fbuild: FormBuilder,
+    private authService: AuthService
+  ) {
+    this.formulario = fbuild.group({
+      usuario: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
 
   ngOnInit() {
   }

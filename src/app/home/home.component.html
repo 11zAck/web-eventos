@@ -3,12 +3,19 @@
     <div class="page-header page-header">
         <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url('assets/img/bg/wedding-01.jpg');">
         </div>
-            <div class="content-center">
-                <h3 class="title">Organiza, invita, celebra y disfruta de los buenos deseos.</h3>
-                <div class="text-center">
-                    <button class="btn btn-neutral" type="button">Empezar</button>
-                </div>
+        <div class="content-center">
+          <div class="row">
+            <div class="col-md-12" *ngIf="authService.isAuthenticated()">
+              <h3 class="title">Organiza, invita, celebra y disfruta de los buenos deseos.</h3>
+              <div class="text-center">
+                  <button class="btn btn-neutral" type="button" [routerLink]="['/eventos']">Mis eventos</button>
+              </div>
             </div>
+            <div class="col-offset-md-6 col-md-6" *ngIf="!authService.isAuthenticated()">
+                <app-home-login></app-home-login>
+            </div>
+          </div>
+        </div>
     </div>
     <div class="section section-about-us">
       <div class="container">
